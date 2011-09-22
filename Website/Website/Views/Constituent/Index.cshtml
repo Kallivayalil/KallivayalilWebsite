@@ -44,6 +44,7 @@
         <span id="lblCreatedBy" >@Model.CreatedBy</span> 
      </div>
     <input id="BtnUpdateProfile" type="submit" class="profileButton" onclick="edit()" value="Edit" />
+      @Html.Thumbnail("Constituent", "ResizeImage", 100, 399, "geekinside.jpg")
 </fieldset>
 
 <fieldset   id="editProfileDetails" class="profileDetails hidden">

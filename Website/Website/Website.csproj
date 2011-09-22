@@ -69,6 +69,7 @@
     <Content Include="Content\Events\events.jpg" />
     <Content Include="Content\images\close.gif" />
     <Content Include="Content\images\close.png" />
+    <Content Include="Content\images\Constituents\geekinside.jpg" />
     <Content Include="Content\mytheme\images\h4_profile.png" />
     <Content Include="Content\registration\css\overlay.css" />
     <Compile Include="Controllers\AddressController.cs" />
@@ -85,6 +86,9 @@
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\RelationshipController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Helpers\ImageController.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
+    <Compile Include="Helpers\ThumbnailResult.cs" />
     <Compile Include="Models\Association.cs" />
     <Compile Include="Models\Committee.cs" />
     <Compile Include="Models\ContactUs.cs" />

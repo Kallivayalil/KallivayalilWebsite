@@ -10,7 +10,7 @@ using Website.Models.ViewModels;
 
 namespace Website.Controllers
 {
-    public class ConstituentController : Controller
+    public class ConstituentController : ImageController
     {
         private AutoDataContractMapper mapper = new AutoDataContractMapper();
         private string serviceBaseUri = ConfigurationManager.AppSettings["serviceBaseUri"];
@@ -21,6 +21,11 @@ namespace Website.Controllers
                 FormsAuthentication.RedirectToLoginPage();
             PopulateBranchTypes();
             return PartialView(GetConstituent());
+        }
+
+        public ThumbnailResult ResizeImage(int width, int height, string file)
+        {
+            return Thumbnail(width, height, file);
         }
 
         private void PopulateBranchTypes()

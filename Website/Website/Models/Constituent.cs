@@ -22,5 +22,12 @@ namespace Website.Models
         public virtual bool IsRegistered { get; set; }
         public virtual ConstituentName Name { get; set; }
 
+        [UIHint("ProfileImage")]
+        public virtual string ProfileImage
+        {
+            get { return ""; }
+            set { ProfileImage = value; } 
+        }
+
     }
 }
