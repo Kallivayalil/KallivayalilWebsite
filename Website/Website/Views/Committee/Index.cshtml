@@ -52,9 +52,9 @@
             .Columns(columns =>
             {
                 columns.Bound(p => p.Type).ClientTemplate("<#= Type.Description#>");
-                columns.Bound(p => p.StartDate).EditorTemplateName("Date.cshtml");
-                columns.Bound(p => p.EndDate).EditorTemplateName("Date.cshtml");
-                columns.Bound(p => p.Constituent);
+                columns.Bound(p => p.StartYear);
+                columns.Bound(p => p.EndYear);
+                columns.Bound(p => p.Constituent).ClientTemplate("<#=Constituent.Name.NameString #>").Title("Member Name") ;
                 columns.Bound(p => p.CreatedBy).Hidden(true);
                 columns.Bound(p => p.CreatedDateTime).Hidden(true);
                 columns.Bound(p => p.UpdatedBy).Hidden(true);
@@ -65,6 +65,12 @@
                     commands.Delete().ButtonType(GridButtonType.Image);
                 }).Width(180).Title("Commands");
             })
+                      .Groupable(settings => settings.Groups(groups =>
+                      {
+                          groups.Add(c => c.StartYear);
+                          groups.Add(c => c.EndYear);
+
+                      })) 
             .ClientEvents(events => events.OnEdit("onEdit"))
             .Sortable()
           )
