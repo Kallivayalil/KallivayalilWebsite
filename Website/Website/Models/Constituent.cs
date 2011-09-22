@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Website.Helpers;
 using Website.Models.ReferenceData;
 
 namespace Website.Models
@@ -28,6 +29,7 @@ namespace Website.Models
             get { return ""; }
             set { ProfileImage = value; } 
         }
+
 
     }
 }
