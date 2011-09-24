@@ -5,49 +5,83 @@
          $("#BornOn").datepicker();
          $("#DiedOn").datepicker();
      });
+
+   
 	</script>
 
-<div id="profile">
-<fieldset   id="viewProfileDetails" class="profileDetails">
-    <div style="float: left; clear: left; width: 748px; ">
-        <span class="label">First Name</span>
-        <span id="labelFirstName" class="viewField">@Model.Name.FirstName</span>
-        <span class="label">Gender</span>
-        <span id="labelGender" class="viewField">@Model.Gender</span>
-        <span class="label">MaritialStatus</span>
-        <span id="labelMaritalStatus" class="viewField">@Model.MaritialStatus</span>        
-    </div>
-
-    <div style="float: left; clear: left; width: 748px; ">
-        <span class="label">Middle Name</span>
-        <span id="labelMiddleName" class="viewField">@Model.Name.MiddleName</span>
-        <span class="label">BranchName</span>
-        <span id="labelBranchName" class="viewField">@Model.BranchName.Description</span>
-        <span class="label">BornOn</span>
-        <span class="viewfield">@String.Format("{0:g}", Model.BornOn)</span>
-    </div>
+    @{ Html.Telerik().ScriptRegistrar()
+        .OnDocumentReady(@<text>
+          $('#photo')
+                .click(function (e) {
+                    $('#ChangePhoto').data('tWindow').center().open();
+                });
+          </text>); }
     
-    <div style="float: left; clear: left; width: 748px;">
-        <span class="label">Last Name</span>
-        <span id="labelLastName" class="viewField">@Model.Name.LastName</span>
-        <span class="label">HouseName</span>
-        <span id="labelHouseName" class="viewField">@Model.HouseName</span>
-        <span class="label">DiedOn</span>
-        <span class="viewfield">@String.Format("{0:g}", Model.DiedOn)</span>
-    </div>  
-    
-    <div class="hidden">
-        <span id="lblHasExpired">@Model.HasExpired</span>
-        <span id="lblIsRegistered" >@Model.IsRegistered</span>
-        <span  id="lblNameId" >@Model.Name.Id</span>
-        <span id="lblCreatedDateTime" >@Model.CreatedDateTime</span>
-        <span id="lblCreatedBy" >@Model.CreatedBy</span> 
-     </div>
-    <input id="BtnUpdateProfile" type="submit" class="profileButton" onclick="edit()" value="Edit" />
-    <img src="Kallivayalil/Content/images/Constituents/geekinside.jpg" alt="geekinside.jpg" /> 
-</fieldset>
+    <link "@Url.Content("~/Content/profile/css/jquery.Jcrop.css")" type="text/css" media="screen" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ProfilePhoto/Uploadify/swfobject.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ProfilePhoto/Uploadify/jquery.uploadify.v2.1.4.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ProfilePhoto/jquery.Jcrop.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/ProfilePhoto/crop.js")"></script>
 
-<fieldset   id="editProfileDetails" class="profileDetails hidden">
+    @{  Html.Telerik().Window()
+        .Name("ChangePhoto")
+        .Title("Change Photo")
+        .Content(@<text>
+       
+          <div style="position: relative;" id="pnlUpload">
+            <input type="button" id="btnUpload" value="Upload Image" />
+            <div style="position: absolute; top: 4px; left: 3px;">
+                <input id="fuFileUploader" name="file_upload" type="file" />
+            </div>
+        </div>
+        <div>
+            <div id="pnlUploadedImage" style="display:none">
+                <h2>Uploaded image</h2>
+                <input type="button" id="btnCrop" onclick="javascript:cropImage();" value="Crop Image" />
+                <input type="button" id="btnResize" onclick="javascript:resizeImage();" value="Resize Image" />
+                <label id="lblMethodError" style="display:none"></label>
+                <br />
+                <img src="" id="imgUploadedImage" alt="Uploaded Image" />
+            </div>
+            <div id="pnlNewImage" style="display:none">
+                <h2>Modified image</h2>
+                <img src="" id="imgNewImage" alt="Image" />
+            </div>
+        </div>
+         
+            </text>)
+        .Width(400)
+        .Draggable(true)
+        .Modal(true)
+        .Visible(false)
+        .Render();
+}
+
+    <div class="employee-details">
+           <img src="@Url.Action("ResizeImage", "Constituent", new { width = 100, height = 100, file = "geekinside.jpg" })"alt="New"  />
+           <input id="photo" name="photo" type="submit" value="Change" />
+            <ul>
+                <li>
+                    <label>Birth Date:</label>@Model.BornOn.ToString("d") 
+                </li>
+                <li>
+                    <label>Gender:</label>@Model.Gender 
+                </li>
+                <li>
+                    <label>First Name:</label>@Model.Name.FirstName
+                </li>
+                <li>
+                    <label>Middle Name</label>@Model.Name.MiddleName 
+                </li>
+                <li>
+                    <label>Last Name:</label>@Model.Name.LastName
+                </li>
+            </ul>
+        </div>         
+
+   
+
+<!--fieldset   id="editProfileDetails" class="profileDetails hidden">
         <div style="float: left; clear: left; width: 748px;">
             First Name : <input class="editField" type="text" name="input" id="FirstName" value="@Model.Name.FirstName"/>
             Gender : <input   class="editField" type="text" name="input" id="Gender" value="@Model.Gender"/>
@@ -58,12 +92,13 @@
             Middle Name :<input class="editField" type="text"  name="input" id="MiddleName" value="@Model.Name.MiddleName"/>
             BranchName : <select class="editField" name="input" id="BranchName">
                         @if (ViewData["branchTypes"] != null)
-                        {   
-                            foreach (var ev in ViewData["branchTypes"] as IEnumerable<Website.Models.ReferenceData.BranchType>){
-                                if(@Model.BranchName.Description.Equals(ev.Description))
-                                {<option value=@string.Format("{0}",ev.Id) selected="selected">@ev.Description</option>}
-                              else
-                                {<option value=@string.Format("{0}",ev.Id)>@ev.Description</option>}
+                        {
+                            foreach (var ev in ViewData["branchTypes"] as IEnumerable<Website.Models.ReferenceData.BranchType>)
+                            {
+                                if (@Model.BranchName.Description.Equals(ev.Description))
+                                {<option value=@string.Format("{0}", ev.Id) selected="selected">@ev.Description</option>}
+                                else
+                                {<option value=@string.Format("{0}", ev.Id)>@ev.Description</option>}
                             }
                         }
                          </select>
@@ -87,7 +122,6 @@
 
          <input id="personUpdate" type="submit" class="profileButton"  value="Save"/>
       
-</fieldset>
+</fieldset-->
      
-</div>
 

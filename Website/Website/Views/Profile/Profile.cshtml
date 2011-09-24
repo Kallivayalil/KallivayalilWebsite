@@ -31,12 +31,17 @@
 <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/constituent.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/profile.js")"></script>
 <div>
-<div id="profile">
-
-@{ Html.RenderAction("Index","Constituent"); } 
-</div>
- <div class="profileTab">
+ <div class = "profileTab">
   <ul  id="accordion">	
+   <li>
+            <h4 class="employee-details"><a href="#" ><span>Constituent</span></a></h4>
+   
+   <div class ="employee-details">
+        @{ Html.RenderAction("Index","Constituent"); } 
+    </div>
+   
+    </li>
+   
     <li>
             <h4><a href="#" onclick="click('address')"><span>Contact Details</span></a></h4>
             <div id="vtab">
@@ -61,9 +66,11 @@
     
 </div>
     </li>
+    
+   
      <li>
             <h4><a href="#" onclick="click('educationDetail')"><span>Education</span></a></h4>
-<div id="vtab">
+             <div id="vtab"  class= "profileTab">
 
     <ul>
         <li class="educationDetail"></li>
@@ -82,7 +89,7 @@
     </li>
      <li>
             <h4><a href="#" onclick="click('relationship')" ><span>Relationship</span></a></h4>
-<div id="vtab">
+            <div id="vtab"  class= "profileTab">
 
     <ul>
         <li class="relationship"></li>

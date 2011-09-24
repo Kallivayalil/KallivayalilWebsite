@@ -28,7 +28,7 @@ namespace Website.Helpers
             }
 
             var filePath = context.HttpContext.Server.MapPath(context.HttpContext.Request.ApplicationPath)
-                           + @"Content\images\Constituents" + Filename;
+                           + @"\Content\images\Constituents\" + Filename;
 
             if (!File.Exists(filePath))
             {
