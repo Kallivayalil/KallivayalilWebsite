@@ -16,11 +16,16 @@ function add() {
         t.add(strUser + '=' + value);
 };
 
-function include(arr, obj) {
-    for (var i = 0; i < $(arr).length; i++) {
-        if (arr[i] == obj) return true;
-    }
-    return false;
+function include(arr, newValue) {
+    var isPresent = false;
+    $.each(arr, function (index, existing) {
+        if (existing == newValue) 
+        {
+            isPresent = true;
+        }
+    })
+ 
+    return isPresent;
 };
 
 var unique = function (origArr) {
