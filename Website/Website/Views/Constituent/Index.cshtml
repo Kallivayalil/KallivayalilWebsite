@@ -8,6 +8,8 @@
 
    
 	</script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/photoPreview.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/jquery_form.js")"></script>
 
     @{ Html.Telerik().ScriptRegistrar()
         .OnDocumentReady(@<text>
@@ -17,40 +19,32 @@
                 });
           </text>); }
     
-    <link "@Url.Content("~/Content/profile/css/jquery.Jcrop.css")" type="text/css" media="screen" />
-    <script type="text/javascript" src="@Url.Content("~/Scripts/ProfilePhoto/Uploadify/swfobject.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/ProfilePhoto/Uploadify/jquery.uploadify.v2.1.4.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/ProfilePhoto/jquery.Jcrop.min.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/ProfilePhoto/crop.js")"></script>
-
     @{  Html.Telerik().Window()
         .Name("ChangePhoto")
         .Title("Change Photo")
         .Content(@<text>
        
-          <div style="position: relative;" id="pnlUpload">
-            <input type="button" id="btnUpload" value="Upload Image" />
-            <div style="position: absolute; top: 4px; left: 3px;">
-                <input id="fuFileUploader" name="file_upload" type="file" />
-            </div>
-        </div>
-        <div>
-            <div id="pnlUploadedImage" style="display:none">
-                <h2>Uploaded image</h2>
-                <input type="button" id="btnCrop" onclick="javascript:cropImage();" value="Crop Image" />
-                <input type="button" id="btnResize" onclick="javascript:resizeImage();" value="Resize Image" />
-                <label id="lblMethodError" style="display:none"></label>
-                <br />
-                <img src="" id="imgUploadedImage" alt="Uploaded Image" />
-            </div>
-            <div id="pnlNewImage" style="display:none">
-                <h2>Modified image</h2>
-                <img src="" id="imgNewImage" alt="Image" />
-            </div>
-        </div>
-         
+       
+        <table>
+        <tbody>
+        <tr>
+               <img alt"Preview" id="imgThumbnail2" height="300px" width="300px" /> 
+       </tr>
+       <tr>
+               <input type="file" name="imageLoad2" id="imageLoad2"  onchange="ChangeImage('imageLoad2','#imgThumbnail2')" />
+       
+       </tr>
+       <tr>
+                <input type="submit" value= "upload" onclick="UploadSubmit('imageLoad2','#imgThumbnail2')"/>
+       </tr>
+
+    
+       </tbody>
+       </table>
+
             </text>)
         .Width(400)
+        .Height(400)
         .Draggable(true)
         .Modal(true)
         .Visible(false)

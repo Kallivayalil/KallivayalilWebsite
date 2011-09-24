@@ -64,6 +64,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\Custom\jquery_form.js" />
+    <Content Include="Scripts\Custom\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\Custom\MicrosoftAjax.js" />
+    <Content Include="Scripts\Custom\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\Custom\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\Custom\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Scripts\Custom\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\Custom\photoPreview.js" />
     <Content Include="Content\Events\anniversary.jpg" />
     <Content Include="Content\Events\bday.jpg" />
     <Content Include="Content\Events\events.jpg" />
@@ -80,6 +88,7 @@
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\FamilyTreeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagePreviewController.cs" />
     <Compile Include="Controllers\OccupationController.cs" />
     <Compile Include="Controllers\PhoneController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
@@ -232,7 +241,7 @@
     <Content Include="Scripts\galleria\galleria.classic.js" />
     <Content Include="Scripts\galleria\galleria.classic.min.js" />
     <Content Include="Scripts\jexpand\jExpand.js" />
-    <Content Include="Scripts\jit-yc.js" />
+    <Content Include="Scripts\jit.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
     <Content Include="Scripts\jquery.dictionary.js" />

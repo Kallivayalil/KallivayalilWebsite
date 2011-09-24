@@ -22,7 +22,8 @@ namespace Website.Controllers
             PopulateBranchTypes();
             return PartialView(GetConstituent());
         }
-
+        
+        
         public ThumbnailResult ResizeImage(int width, int height, string file)
         {
             return Thumbnail(width, height, file);
