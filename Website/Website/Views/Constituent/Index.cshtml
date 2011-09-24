@@ -52,7 +52,7 @@
 }
 
     <div class="employee-details">
-           <img src="@Url.Action("ResizeImage", "Constituent", new { width = 100, height = 100, file = "geekinside.jpg" })"alt="New"  />
+           <img src="@Url.Action("ResizeImage", "Constituent", new { width = 100, height = 100, file = Session["ConstituentId"]+".jpg" })"alt="New"  />
            <input id="photo" name="photo" type="submit" value="Change" />
             <ul>
                 <li>

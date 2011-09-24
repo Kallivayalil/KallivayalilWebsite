@@ -13,7 +13,7 @@ namespace Website.Controllers
             {
                 Session["ContentLength"] = Request.Files[0].ContentLength;
                 Session["ContentType"] = Request.Files[0].ContentType;
-                byte[] b = new byte[Request.Files[0].ContentLength];
+                var b = new byte[Request.Files[0].ContentLength];
                 Request.Files[0].InputStream.Read(b, 0, Request.Files[0].ContentLength);
                 Session["ContentStream"] = b;
                 return Content(Request.Files[0].ContentType + ";" + Request.Files[0].ContentLength);
@@ -35,7 +35,7 @@ namespace Website.Controllers
         private void Upload(HttpPostedFileBase file)
         {
             var fileName = Path.GetFileName(file.FileName);
-            var physicalPath = Path.Combine(Server.MapPath("~/App_Data"), fileName);
+            var physicalPath = Path.Combine(Server.MapPath("~/App_Data"), Session["ConstituentId"]+".jpg");
 
             // The files are not actually saved in this demo
              file.SaveAs(physicalPath);
