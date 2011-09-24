@@ -1,4 +1,4 @@
-﻿  function ChangeImage(fileId, imageId) {
+﻿  function ChangeImage(fileId, imageId,previewId) {
               var myform = document.createElement("form");
         myform.style.display = "none";
         myform.action = "http://localhost/kallivayalil/ImagePreview/AjaxSubmit";
@@ -24,6 +24,7 @@
         function (responseText) {
             var d = new Date();
             $(imageId)[0].src = "http://localhost/kallivayalil/ImagePreview/ImageLoad?a=" + d.getMilliseconds();
+            $(previewId)[0].src = "http://localhost/kallivayalil/ImagePreview/ImageLoad?a=" + d.getMilliseconds();
             if (document.all || is_chrome)//IE
                 imageLoadParent.appendChild(myform.firstChild);
             else//FF                     
