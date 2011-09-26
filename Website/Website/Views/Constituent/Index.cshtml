@@ -5,49 +5,120 @@
          $("#BornOn").datepicker();
          $("#DiedOn").datepicker();
      });
+
+     jQuery(function ($) {
+
+         // Create variables (in this scope) to hold the API and image size
+         var jcrop_api, boundx, boundy;
+
+         $('#imgThumbnail2').Jcrop({
+             onChange: updatePreview,
+             onSelect: updatePreview,
+             aspectRatio: 1
+         }, function () {
+             // Use the API to get the real image size
+             var bounds = this.getBounds();
+             boundx = bounds[0];
+             boundy = bounds[1];
+             // Store the API in the jcrop_api variable
+             jcrop_api = this;
+         });
+
+         function updatePreview(c) {
+             if (parseInt(c.w) > 0) {
+                 var rx = 100 / c.w;
+                 var ry = 100 / c.h;
+
+                 $('#preview').css({
+                     width: Math.round(rx * boundx) + 'px',
+                     height: Math.round(ry * boundy) + 'px',
+                     marginLeft: '-' + Math.round(rx * c.x) + 'px',
+                     marginTop: '-' + Math.round(ry * c.y) + 'px'
+                 });
+             }
+         };
+
+     });
+
+   
 	</script>
+    <link rel="stylesheet" href="@Url.Content("~/Content/profile/jquery.Jcrop.css")" type="text/css" media="screen" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/photoPreview.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/jquery_form.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.Jcrop.js")"></script>
 
-<div id="profile">
-<fieldset   id="viewProfileDetails" class="profileDetails">
-    <div style="float: left; clear: left; width: 748px; ">
-        <span class="label">First Name</span>
-        <span id="labelFirstName" class="viewField">@Model.Name.FirstName</span>
-        <span class="label">Gender</span>
-        <span id="labelGender" class="viewField">@Model.Gender</span>
-        <span class="label">MaritialStatus</span>
-        <span id="labelMaritalStatus" class="viewField">@Model.MaritialStatus</span>        
-    </div>
-
-    <div style="float: left; clear: left; width: 748px; ">
-        <span class="label">Middle Name</span>
-        <span id="labelMiddleName" class="viewField">@Model.Name.MiddleName</span>
-        <span class="label">BranchName</span>
-        <span id="labelBranchName" class="viewField">@Model.BranchName.Description</span>
-        <span class="label">BornOn</span>
-        <span class="viewfield">@String.Format("{0:g}", Model.BornOn)</span>
-    </div>
+    @{ Html.Telerik().ScriptRegistrar()
+        .OnDocumentReady(@<text>
+          $('#photo')
+                .click(function (e) {
+                    $('#ChangePhoto').data('tWindow').center().open();
+                });
+          </text>); }
     
-    <div style="float: left; clear: left; width: 748px;">
-        <span class="label">Last Name</span>
-        <span id="labelLastName" class="viewField">@Model.Name.LastName</span>
-        <span class="label">HouseName</span>
-        <span id="labelHouseName" class="viewField">@Model.HouseName</span>
-        <span class="label">DiedOn</span>
-        <span class="viewfield">@String.Format("{0:g}", Model.DiedOn)</span>
-    </div>  
-    
-    <div class="hidden">
-        <span id="lblHasExpired">@Model.HasExpired</span>
-        <span id="lblIsRegistered" >@Model.IsRegistered</span>
-        <span  id="lblNameId" >@Model.Name.Id</span>
-        <span id="lblCreatedDateTime" >@Model.CreatedDateTime</span>
-        <span id="lblCreatedBy" >@Model.CreatedBy</span> 
-     </div>
-    <input id="BtnUpdateProfile" type="submit" class="profileButton" onclick="edit()" value="Edit" />
-    <img src="Kallivayalil/Content/images/Constituents/geekinside.jpg" alt="geekinside.jpg" /> 
-</fieldset>
+    @{  Html.Telerik().Window()
+        .Name("ChangePhoto")
+        .Title("Change Photo")
+        .Content(@<text>
+       
 
-<fieldset   id="editProfileDetails" class="profileDetails hidden">
+       <table>
+			<tr>
+				<td>
+					 <img alt"Preview" id="imgThumbnail2" height="300px" width="300px" /> 
+				</td>
+				<td>
+					<div style="width:100px;height:100px;overflow:hidden;">
+						<img id="preview" alt="Preview" />
+					</div>
+				</td>
+                
+			</tr>
+            <tr>
+             <td>
+               <input type="file" name="imageLoad2" id="imageLoad2"  onchange="ChangeImage('imageLoad2','#imgThumbnail2','#preview')" />
+       
+            </td>
+            <td>
+                <input type="submit" value= "upload" onclick="UploadSubmit('imageLoad2','#preview')"/>
+       </td>
+            </tr>
+		</table>
+       
+       
+            </text>)
+        .Width(400)
+        .Height(400)
+        .Draggable(true)
+        .Modal(true)
+        .Visible(false)
+        .Render();
+}
+
+    <div class="employee-details">
+           <img src="@Url.Action("ResizeImage", "Constituent", new { width = 100, height = 100, file = Session["ConstituentId"]+".jpg" })"alt="New"  />
+           <input id="photo" name="photo" type="submit" value="Change" />
+            <ul>
+                <li>
+                    <label>Birth Date:</label>@Model.BornOn.ToString("d") 
+                </li>
+                <li>
+                    <label>Gender:</label>@Model.Gender 
+                </li>
+                <li>
+                    <label>First Name:</label>@Model.Name.FirstName
+                </li>
+                <li>
+                    <label>Middle Name</label>@Model.Name.MiddleName 
+                </li>
+                <li>
+                    <label>Last Name:</label>@Model.Name.LastName
+                </li>
+            </ul>
+        </div>         
+
+   
+
+<!--fieldset   id="editProfileDetails" class="profileDetails hidden">
         <div style="float: left; clear: left; width: 748px;">
             First Name : <input class="editField" type="text" name="input" id="FirstName" value="@Model.Name.FirstName"/>
             Gender : <input   class="editField" type="text" name="input" id="Gender" value="@Model.Gender"/>
@@ -58,12 +129,13 @@
             Middle Name :<input class="editField" type="text"  name="input" id="MiddleName" value="@Model.Name.MiddleName"/>
             BranchName : <select class="editField" name="input" id="BranchName">
                         @if (ViewData["branchTypes"] != null)
-                        {   
-                            foreach (var ev in ViewData["branchTypes"] as IEnumerable<Website.Models.ReferenceData.BranchType>){
-                                if(@Model.BranchName.Description.Equals(ev.Description))
-                                {<option value=@string.Format("{0}",ev.Id) selected="selected">@ev.Description</option>}
-                              else
-                                {<option value=@string.Format("{0}",ev.Id)>@ev.Description</option>}
+                        {
+                            foreach (var ev in ViewData["branchTypes"] as IEnumerable<Website.Models.ReferenceData.BranchType>)
+                            {
+                                if (@Model.BranchName.Description.Equals(ev.Description))
+                                {<option value=@string.Format("{0}", ev.Id) selected="selected">@ev.Description</option>}
+                                else
+                                {<option value=@string.Format("{0}", ev.Id)>@ev.Description</option>}
                             }
                         }
                          </select>
@@ -87,7 +159,6 @@
 
          <input id="personUpdate" type="submit" class="profileButton"  value="Save"/>
       
-</fieldset>
+</fieldset-->
      
-</div>
 

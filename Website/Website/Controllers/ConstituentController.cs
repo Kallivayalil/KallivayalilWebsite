@@ -22,7 +22,8 @@ namespace Website.Controllers
             PopulateBranchTypes();
             return PartialView(GetConstituent());
         }
-
+        
+        
         public ThumbnailResult ResizeImage(int width, int height, string file)
         {
             return Thumbnail(width, height, file);
@@ -53,22 +54,6 @@ namespace Website.Controllers
             mapper.Map(constituentData, constituent);
             return constituent;
         }
-
-//        [AcceptVerbs(HttpVerbs.Post)]
-//        [GridAction]
-//        public ActionResult Edit(int id)
-//        {
-//            var constituent = new Constituent();
-//
-//            TryUpdateModel(constituent);
-//            
-//            mapper = new AutoDataContractMapper();
-//            var constituentData = new ConstituentData();
-//            mapper.Map(constituent, constituentData);
-//
-//            HttpHelper.Put(string.Format(serviceBaseUri+"/Constituents/{0}",id),constituentData);
-//            return PartialView(GetConstituent());
-//        }
 
         [HttpPost]
         public ActionResult Save(ConstituentInputModel constituent)

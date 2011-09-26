@@ -66,3 +66,44 @@
 	padding: 8px 0 0 10px;
 }
 
+
+
+ .employee-details ul
+        {
+            list-style:none;
+            font-style:italic;
+            margin-left:80px;
+            margin-bottom: 20px;
+        }
+        .employee-details img
+        {
+            border: 1px solid #05679D;
+            float:left;
+        }
+        
+        .employee-details label
+        {
+            display:inline-block;
+            width:90px;
+            font-style:normal;
+            font-weight:bold;
+        }
+        
+         .employee-details div
+        {
+            width:600px;
+        }
+        
+        
+.employee-details h4  {
+	color: #333;
+	font-family: Lucida, "Lucida Sans", Geneva, Arial, sans-serif;
+	font-size: 16px;
+	text-transform:uppercase;
+	margin: 0;
+	line-height: 1.9em;
+	padding: 0px 0px 15px 5px;
+	font-weight: bold;
+	background: transparent url('images/h4_profile.png') no-repeat scroll left bottom;
+	width:900px;
+}
