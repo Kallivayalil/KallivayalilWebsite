@@ -18,10 +18,10 @@ namespace Website.Controllers
         {
             get
             {
-                var employees = (ICollection<UploadModel>)Session[SessionKey];
-                if (employees == null)
+                var uploadModels = (ICollection<UploadModel>)Session[SessionKey];
+                if (uploadModels == null)
                 {
-                    employees = new List<UploadModel>
+                    uploadModels = new List<UploadModel>
                     {
                         new UploadModel
                         {
@@ -31,10 +31,10 @@ namespace Website.Controllers
                         }
                     };
 
-                    Model = employees;
+                    Model = uploadModels;
                 }
 
-                return employees;
+                return uploadModels;
             }
 
             set
@@ -78,11 +78,11 @@ namespace Website.Controllers
         [GridAction]
         public ActionResult Insert(string lastUpload)
         {
-            var employee = new UploadModel();
-            if (TryUpdateModel(employee))
+            var uploadModel = new UploadModel();
+            if (TryUpdateModel(uploadModel))
             {
-                employee.Id = Guid.NewGuid().ToString();
-                Model.Add(employee);
+                uploadModel.Id = Guid.NewGuid().ToString();
+                Model.Add(uploadModel);
             }
 
             return View(new GridModel(Model));
