@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices.ComTypes;
 using System.Web;
 using System.Web.Mvc;
+using Website.Models;
 
 namespace Website.Controllers
 {
@@ -21,7 +22,7 @@ namespace Website.Controllers
 
 
             [AcceptVerbs(HttpVerbs.Post)]
-            public ActionResult UploadSubmit(int? id)
+            public ActionResult UploadSubmit(ProfilePictureModel model)
             {
                 Session["ContentLength"] = Request.Files[0].ContentLength;
                 Session["ContentType"] = Request.Files[0].ContentType;
@@ -39,6 +40,13 @@ namespace Website.Controllers
 
             // The files are not actually saved in this demo
              file.SaveAs(physicalPath);
+        }
+
+        private static Image cropImage(Image img, Rectangle cropArea)
+        {
+            var bmpImage = new Bitmap(img);
+            var bmpCrop = bmpImage.Clone(cropArea, bmpImage.PixelFormat);
+            return (Image)(bmpCrop);
         }
 
             public ActionResult ImageLoad(int? id)
@@ -59,5 +67,13 @@ namespace Website.Controllers
                 return Content("");
             }
 
+    }
+
+    public class CropData
+    {
+        public int X1;
+        public int X2;
+        public int Y1;
+        public int Y2;
     }
 }

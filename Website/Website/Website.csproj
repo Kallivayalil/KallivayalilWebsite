@@ -105,6 +105,7 @@
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EducationDetail.cs" />
+    <Compile Include="Models\ProfilePictureModel.cs" />
     <Compile Include="Models\Occupation.cs" />
     <Compile Include="Models\ReferenceData\AddressType.cs" />
     <Compile Include="Models\ReferenceData\AssociationType.cs" />

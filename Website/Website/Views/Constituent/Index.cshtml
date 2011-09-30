@@ -1,51 +1,17 @@
 ﻿@model Website.Models.Constituent
  
+   <link rel="stylesheet" href="@Url.Content("~/Content/profile/jquery.Jcrop.css")" type="text/css" media="screen" />
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/jquery_form.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.Jcrop.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/photoPreview.js")"></script>
  <script type="text/javascript">
+
      $(function () {
          $("#BornOn").datepicker();
          $("#DiedOn").datepicker();
      });
-
-     jQuery(function ($) {
-
-         // Create variables (in this scope) to hold the API and image size
-         var jcrop_api, boundx, boundy;
-
-         $('#imgThumbnail2').Jcrop({
-             onChange: updatePreview,
-             onSelect: updatePreview,
-             aspectRatio: 1
-         }, function () {
-             // Use the API to get the real image size
-             var bounds = this.getBounds();
-             boundx = bounds[0];
-             boundy = bounds[1];
-             // Store the API in the jcrop_api variable
-             jcrop_api = this;
-         });
-
-         function updatePreview(c) {
-             if (parseInt(c.w) > 0) {
-                 var rx = 100 / c.w;
-                 var ry = 100 / c.h;
-
-                 $('#preview').css({
-                     width: Math.round(rx * boundx) + 'px',
-                     height: Math.round(ry * boundy) + 'px',
-                     marginLeft: '-' + Math.round(rx * c.x) + 'px',
-                     marginTop: '-' + Math.round(ry * c.y) + 'px'
-                 });
-             }
-         };
-
-     });
-
-   
 	</script>
-    <link rel="stylesheet" href="@Url.Content("~/Content/profile/jquery.Jcrop.css")" type="text/css" media="screen" />
-    <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/photoPreview.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/jquery_form.js")"></script>
-    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.Jcrop.js")"></script>
+  
 
     @{ Html.Telerik().ScriptRegistrar()
         .OnDocumentReady(@<text>
@@ -60,30 +26,27 @@
         .Title("Change Photo")
         .Content(@<text>
        
-
-       <table>
+       <form name="photoUpload" action="http://localhost/Kallivayalil/ImagePreview/UploadSubmit" method="post" enctype=multipart/form-data>
+           <table>
 			<tr>
 				<td>
-					 <img alt"Preview" id="imgThumbnail2" height="300px" width="300px" /> 
+					<img alt="Preview" id="imgThumbnail2" height="350px" width="300px" /> 
+					<input type="file" name="imageLoad2" id="imageLoad2"  onchange="ChangeImage('imageLoad2','#imgThumbnail2','#preview')" />
+					<input type="hidden"  id ='x1' name='x1' value="10"/>
+					<input type="hidden"  id ='y1' name='y1' value="10"/>
+					<input type="hidden"  id ='x2' name='x2' value="10"/>
+					<input type="hidden"  id ='y2' name='y2' value="10"/>
 				</td>
 				<td>
 					<div style="width:100px;height:100px;overflow:hidden;">
-						<img id="preview" alt="Preview" />
+						<img id="preview" alt="Preview"/>
 					</div>
+					
+					<input type="submit" value= "upload"/>
 				</td>
-                
 			</tr>
-            <tr>
-             <td>
-               <input type="file" name="imageLoad2" id="imageLoad2"  onchange="ChangeImage('imageLoad2','#imgThumbnail2','#preview')" />
-       
-            </td>
-            <td>
-                <input type="submit" value= "upload" onclick="UploadSubmit('imageLoad2','#preview')"/>
-       </td>
-            </tr>
 		</table>
-       
+       </form>
        
             </text>)
         .Width(400)
