@@ -30,16 +30,16 @@
            <table>
 			<tr>
 				<td>
-					<img alt="Preview" id="imgThumbnail2" height="350px" width="300px" /> 
+					<img src="@Url.Content("~/Content/images/Constituents/NoPic.gif")" alt="Preview" id="imgThumbnail2" height="350px" width="300px" /> 
 					<input type="file" name="imageLoad2" id="imageLoad2"  onchange="ChangeImage('imageLoad2','#imgThumbnail2','#preview')" />
-					<input type="hidden"  id ='x1' name='x1' value="10"/>
-					<input type="hidden"  id ='y1' name='y1' value="10"/>
-					<input type="hidden"  id ='x2' name='x2' value="10"/>
-					<input type="hidden"  id ='y2' name='y2' value="10"/>
+					<input type="hidden"  id ='x1' name='x1' value="0"/>
+					<input type="hidden"  id ='y1' name='y1' value="0"/>
+					<input type="hidden"  id ='x2' name='x2' value="0"/>
+					<input type="hidden"  id ='y2' name='y2' value="0"/>
 				</td>
 				<td>
-					<div style="width:100px;height:100px;overflow:hidden;">
-						<img id="preview" alt="Preview"/>
+					<div style="width:115px;height:115px;overflow:hidden;">
+						<img src="@Url.Content("~/Content/images/Constituents/noPicThumb.gif")" id="preview" alt="Preview"/>
 					</div>
 					
 					<input type="submit" value= "upload"/>

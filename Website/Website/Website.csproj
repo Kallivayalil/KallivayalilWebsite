@@ -64,6 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\Constituents\NoPic.gif" />
+    <Content Include="Content\images\Constituents\NoPicGirl.jpg" />
+    <Content Include="Content\images\Constituents\noPicThumb.gif" />
     <Content Include="Content\profile\Jcrop.gif" />
     <Content Include="Content\profile\jquery.Jcrop.css" />
     <Content Include="Scripts\Custom\jquery_form.js" />

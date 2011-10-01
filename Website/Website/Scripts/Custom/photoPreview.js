@@ -27,6 +27,11 @@
             $(imageId)[0].src = "http://localhost/kallivayalil/ImagePreview/ImageLoad?a=" + d.getMilliseconds();
             $(previewId)[0].src = "http://localhost/kallivayalil/ImagePreview/ImageLoad?a=" + d.getMilliseconds();
 
+            $('#preview').css({
+                width: '115px',
+                height: '115px',
+            });
+
 
             var jcrop_api, boundx, boundy;
 
@@ -34,7 +39,6 @@
                 onChange: updatePreview,
                 onSelect: updatePreview,
                 minSize: [x2, y2],
-                maxSize:[x2,y2],
                 aspectRatio: 1
             }, function () {
                 // Use the API to get the real image size
@@ -53,6 +57,9 @@
                     y2 = c.y2;
 
                     $('#x1').val(x1);
+                    $('#y1').val(y1);
+                    $('#x2').val(x2);
+                    $('#y2').val(y2);
                     var rx = 100 / c.w;
                     var ry = 100 / c.h;
                     $('#preview').css({
