@@ -100,6 +100,7 @@
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\RelationshipController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Helpers\ImageController.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\ThumbnailResult.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="Models\ReferenceData\PositionTypes.cs" />
     <Compile Include="Models\ShortAddress.cs" />
     <Compile Include="Models\ViewModels\ConstituentInputModel.cs" />
+    <Compile Include="Models\UploadModel.cs" />
     <Compile Include="Models\ViewModels\SearchModel.cs" />
     <Compile Include="Models\ViewModels\User.cs" />
     <Compile Include="Global.asax.cs">
@@ -517,11 +519,13 @@
     <Content Include="Views\EducationDetail\EditorTemplates\EducationTypes.ascx" />
     <Content Include="Views\Email\EditorTemplates\EmailTypes.ascx" />
     <Content Include="Views\Phone\EditorTemplates\PhoneTypes.ascx" />
+    <Content Include="Views\Upload\EditorTemplates\Attachment.ascx" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Relationship\EditorTemplates\Editor.cshtml" />
+    <Content Include="Views\Upload\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
