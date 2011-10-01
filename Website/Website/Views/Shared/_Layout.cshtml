@@ -404,9 +404,10 @@
     <div id="nav">
     	<ul class="sf-menu dropdown">
         	<li class="selected"><a href="http://localhost/kallivayalil/">Our Family</a></li>
-            <li  class="selected"><a href="http://localhost/kallivayalil/Upload/Index">Upload Details</a></li>
+
             @if (!string.IsNullOrEmpty(Session["userName"] as string))
             {
+            <li  class="selected"><a href="http://localhost/kallivayalil/Upload/Index">Upload Details</a></li>
         	<li class="selected"><a href="http://localhost/kallivayalil/Profile/Profile">Profile</a></li>
         	<li class="selected"><a href="http://localhost/kallivayalil/Event/Index">Events</a></li>
         	<li class="selected"><a href="http://localhost/kallivayalil/FamilyTree/Index">FamilyTree</a></li>
@@ -545,11 +546,11 @@
                     <div>
                      <ul class="blocklist">
                       @if (ViewData["events"] != null)
-                    {
-                        foreach (var ev in ViewData["events"] as IEnumerable<Website.Models.Event>)
-                        {
-                            if (ev.Type.Description == "Anniversary")
-                            {
+                      {
+                          foreach (var ev in ViewData["events"] as IEnumerable<Website.Models.Event>)
+                          {
+                              if (ev.Type.Description == "Anniversary")
+                              {
                               <li><a id=@string.Format("event_{0}", ev.Id) class="t-group" href="#">@ev.EventTitle</a></li>
                             <div class="tooltip">
 	                        <img src="@Url.Content("~/Content/Events/anniversary.jpg")" alt="Flying screens" style="float:left;margin:0 15px 20px 0" />
@@ -574,9 +575,9 @@
                             </div>
 
                          <script type="text/javascript">$("@string.Format("#event_{0}", ev.Id)").tooltip({ effect: 'slide'});</script> 
-                            }
-                        }
-                    }
+                              }
+                          }
+                      }
                     </ul>
                     </div>
                 </li>

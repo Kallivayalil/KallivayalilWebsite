@@ -11,16 +11,26 @@ function onUpload(e) {
     }
 }
 
+function onRemove(e) {
+    var grid = $(this).closest(".t-grid").data("tGrid");
+    var tr = $(this).closest("tr");
+    var dataItem = grid.dataItem(tr);
+
+    if (dataItem) {
+        e.data = { id: dataItem.ID };
+    }
+}
+
 var lastUploadedFile;
 function onSuccess(e) {
-    var fileName = e.response.fileName;
+    var fileName = e.response.Name;
     
     var grid = $(this).closest(".t-grid").data("tGrid");
     var tr = $(this).closest("tr");
     var dataItem = grid.dataItem(tr);
 
     if (dataItem) {
-        grid.dataItem(tr).Picture = fileName;
+        grid.dataItem(tr).Name = fileName;
     }
 
     lastUploadedFile = fileName;
@@ -34,6 +44,10 @@ function onSuccess(e) {
       .Multiple(false)
       .Async(async => async
             .Save("Save", "Upload")
+            .Remove("Remove", "Upload")
             .AutoUpload(true))
-      .ClientEvents(e => e.OnUpload("onUpload").OnSuccess("onSuccess"))
+      .ClientEvents(e => e.OnUpload("onUpload")
+                          .OnRemove("onRemove")
+                          .OnSuccess("onSuccess")
+                          )
 %>

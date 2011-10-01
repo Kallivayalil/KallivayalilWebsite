@@ -2,25 +2,24 @@
 <script type="text/javascript">
     function onGridSave(e) {
         var values = e.values;
-        if (!values.Picture) {
+        if (!values.Name) {
             // Retrieve the inserted picture name
-            values.Picture = lastUploadedFile;
+            values.Name = lastUploadedFile;
         }
     }
+ 
     </script>
 
 @(Html.Telerik().Grid<Website.Models.UploadModel>()
         .Name("UploadGrid")
-        .DataKeys(keys => keys.Add("Id"))
+        .DataKeys(keys => keys.Add(p => p.Id))
         .Columns(columns =>
         {
-            columns.Bound(c => c.Picture)
-                .ClientTemplate("<img src='/Content/UserFiles/<#= Picture #>' alt='<#= Name #>' />")
-                .Width(200)
-                .Title("Picture");
-            columns.Bound(c => c.Name);
-            columns.Command(c => c.Edit()).Width(200);
-            columns.Command(c => c.Delete()).Width(200);
+            columns.Bound(p => p.Name).Width(200).Title("File");
+            columns.Bound(p => p.Description);
+            columns.Bound(p => p.Constituent).Title("Uploaded By").Hidden(true);
+            columns.Command(p => p.Edit()).Width(200);
+            columns.Command(p => p.Delete()).Width(200);
         })
         .ToolBar(commands => commands.Insert())
         .DataBinding(dataBinding => dataBinding.Ajax()

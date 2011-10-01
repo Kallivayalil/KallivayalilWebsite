@@ -1,14 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace Website.Models
 {
-    public class UploadModel
+    [KnownType(typeof(UploadModel))]
+    public class UploadModel 
     {
-        public string Id { get; set; }
 
-        public string Name { get; set; }
+        [ScaffoldColumn(false)]
+        public virtual int Id { get; set; }
 
+        [DisplayName("Description")]
+        public virtual string Description { get; set; }
+
+        [DisplayName("Name")]
+        public virtual  Constituent Constituent { get; set; }
+        
         [UIHint("Attachment")]
-        public string Picture { get; set; }
+        public virtual string Name { get; set; }
     }
+
+    public class UploadFilesModel : List<UploadModel> { }
 }

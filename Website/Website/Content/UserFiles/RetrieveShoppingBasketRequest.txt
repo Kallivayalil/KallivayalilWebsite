@@ -1,7 +1,0 @@
-<RequestType xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
-   <Header xmlns="http://wsg.thetrainline.com/v1.3/schemas" RequestIdentifier="WSGConsumer" Version="1.3"/>
-   <RetrieveShoppingBasketRequest xmlns="http://wsg.thetrainline.com/v1.3/schemas" >
-	  <Token Id="4748655781286672900" EmailAddress="rajeevtest@TW.COM"/>
-   </RetrieveShoppingBasketRequest>
-</RequestType>
-	
