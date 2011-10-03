@@ -14,7 +14,7 @@ namespace Website.Controllers
     [HandleError]
     public class UploadController : Controller
     {
-         private const string SessionKey = "employees";
+        private const string SessionKey = "employees";
 
         private ICollection<UploadModel> Model{
             get
@@ -27,7 +27,6 @@ namespace Website.Controllers
                 Session[SessionKey] = value;
             }
         }
-
 
         private AutoDataContractMapper mapper = new AutoDataContractMapper();
         private string serviceBaseUri = ConfigurationManager.AppSettings["serviceBaseUri"];
@@ -63,7 +62,6 @@ namespace Website.Controllers
         {
             return View(new GridModel(Model));
         }
-
 
         [HttpPost]
         [GridAction]

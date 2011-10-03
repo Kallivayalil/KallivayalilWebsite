@@ -38,13 +38,13 @@ namespace Website.Controllers
             var savedImage = Image.FromFile(physicalPath + "_Full.jpg");
             var resizedImage = resizeImage(savedImage, new Size(300, 350));
 
-            var width = model.x2 - model.x1;
-            var height = model.y2 - model.y1;
+            var width = (model.x2 - model.x1) > resizedImage.Width ? resizedImage.Width : (model.x2 - model.x1);
+            var height = (model.y2 - model.y1) > resizedImage.Width ? resizedImage.Width : (model.y2 - model.y1);
 
             if (width > 0 && height > 0)
             {
                 var croppedImage = cropImage(resizedImage, new Rectangle(model.x1, model.y1, width, height));
-                var resizedCropImage = resizeImage(savedImage, new Size(115, 115));
+                var resizedCropImage = resizeImage(croppedImage, new Size(115, 115));
                 resizedCropImage.Save(physicalPath + "_thumb.jpg");
             }
             else
