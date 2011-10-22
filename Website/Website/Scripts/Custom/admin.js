@@ -13,9 +13,28 @@
             accept: "application/json",
             success: function (result) {
                 grid.dataBind(result);
+                var a = $('a[href$="#PanelBar-2"]');
+                if (a.parent().hasClass('t-state-default'))
+                    a.click()
             }
         });
 
+    }
+
+    function onMatchRowSelect(e) {
+        id = e.row.cells[1].innerHTML;
+        $.ajax({
+            url: 'http://localhost/Kallivayalil/Admin/SelectMatch?id='+id,
+            type: 'POST',
+            dataType: 'json',
+            error: function (xhr, status) {
+                alert(status);
+            },
+            accept: "application/json",
+            success: function (result) {
+                
+            }
+        });
     }
 
     function onDataBinding(e) 

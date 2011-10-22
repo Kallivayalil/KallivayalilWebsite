@@ -1,6 +1,38 @@
-﻿
+﻿    <script type="text/javascript">
+
+            $(function () {
+
+                $('#eventsSidebar').addClass('sidebar-hidden');
+
+                var $items = $('#vtab>ul>li');
+
+                $items.click(function () {
+
+                    $items.removeClass('selected');
+
+                    $(this).addClass('selected');
+
+                    var index = $items.index($(this));
+
+                    $('#vtab>div').hide().eq(index).show();
+
+                }).eq(0).click();
+
+            });
+
+    </script>
+
 <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/admin.js")"></script>
 
+
+
+   @{ Html.Telerik().PanelBar()
+.Name("PanelBar")
+.Items(parent => {
+parent.Add()
+.Text("Products > Books")
+.Content(@<text>
+       
  @(Html.Telerik().Grid((IEnumerable<Website.Models.Constituent>)ViewData["Constituents"])
                 .Name("RegistrationsGrid")
         .DataKeys(dataKeys => dataKeys.Add(c => c.Id))
@@ -19,13 +51,17 @@
              })
 )
 
-
-
+</text>)
+.Expanded(true);
+    parent.Add()
+        .Text("Matches found")
+        .Content(@<text>
 @(Html.Telerik().Grid<Website.Models.Constituent>()
         .Name("MatchesGrid")
         .DataKeys(keys => keys.Add(p => p.Id))
         .Columns(c =>
         {
+            c.Bound(p => p.Id).Title("Id");
             c.Bound(p => p.Name.NameString).Title("Name");
             c.Bound(p => p.Name.PreferedName);
             c.Bound(p => p.Gender);
@@ -35,7 +71,8 @@
         })
         .ClientEvents(events => events
                 .OnDataBinding("onDataBinding")
-        )
+                .OnRowSelect("onMatchRowSelect")
+        ).Selectable()
         .DetailView(details => details.ClientTemplate(
                 Html.Telerik().TabStrip()
                     .Name("TabStrip_<#= Id #>")
@@ -121,16 +158,16 @@
                                    .Pageable()
                                    .Sortable()
                                    .Filterable()
-                                   .ToHtmlString());  
+                                   .ToHtmlString());
                         items.Add().Text("Relationships").Content(
                                Html.Telerik().Grid<Website.Models.Association>()
                                    .Name("Relationships_<#= Id #>")
                                    .Columns(columns =>
                                    {
-                                        columns.Bound(p => p.Constituent.Name.NameString).Title("Name");
-                                        columns.Bound(p => p.Type).ClientTemplate("<#= Type.Description#>");
-                                        columns.Bound(p => p.AssociatedConstituentName).Title("Associated Name");
-                                        columns.Bound(p => p.AssociatedConstituent.Name.NameString).Title("Associated Individual");
+                                       columns.Bound(p => p.Constituent.Name.NameString).Title("Name");
+                                       columns.Bound(p => p.Type).ClientTemplate("<#= Type.Description#>");
+                                       columns.Bound(p => p.AssociatedConstituentName).Title("Associated Name");
+                                       columns.Bound(p => p.AssociatedConstituent.Name.NameString).Title("Associated Individual");
                                    })
                                     .DataBinding(dataBinding => dataBinding.Ajax()
                                        .Select("AllAssociations", "Search", new { constituentId = "<#= Id #>" }))
@@ -142,4 +179,9 @@
                 .Sortable()
             )
 
-   
+    </text>);
+       })
+
+.Render();
+}
+

@@ -1,4 +1,5 @@
 using System.Configuration;
+using System.Dynamic;
 using System.Web.Mvc;
 using System.Web.Security;
 using Kallivayalil.Client;
@@ -26,9 +27,19 @@ namespace Website.Controllers
 
         [HttpPost]
         public JsonResult Matches(string id)
-         {
+        {
+            Session["approvalConstituentId"] = id; 
             var constituents = PopulateSearchResults(id);
             return this.Json(constituents);
+         }  
+        
+        [HttpPost]
+        public JsonResult SelectMatch(string id)
+        {
+            Session["matchedConstituent"] = id;
+
+            var expandoObject = new ExpandoObject();
+            return this.Json(expandoObject);
          }
 
         private Constituents PopulateSearchResults(string id)
