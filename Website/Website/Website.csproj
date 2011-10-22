@@ -69,6 +69,7 @@
     <Content Include="Content\images\Constituents\noPicThumb.gif" />
     <Content Include="Content\profile\Jcrop.gif" />
     <Content Include="Content\profile\jquery.Jcrop.css" />
+    <Content Include="Scripts\Custom\admin.js" />
     <Content Include="Scripts\Custom\jquery_form.js" />
     <Content Include="Scripts\Custom\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\Custom\MicrosoftAjax.js" />
@@ -86,6 +87,7 @@
     <Content Include="Content\mytheme\images\h4_profile.png" />
     <Content Include="Content\registration\css\overlay.css" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CommitteeController.cs" />
     <Compile Include="Controllers\ConstituentController.cs" />
     <Compile Include="Controllers\EducationDetailController.cs" />
@@ -509,6 +511,7 @@
     <Content Include="Views\Committee\EditorTemplates\EndDate.ascx" />
     <Content Include="Views\Committee\EditorTemplates\PositionTypes.ascx" />
     <Content Include="Views\Committee\EditorTemplates\Editor.cshtml" />
+    <Content Include="Views\Admin\Registrations.cshtml" />
     <None Include="Views\Committee\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Event\EditorTemplates\EndDate.ascx" />
     <Content Include="Views\Event\EditorTemplates\StartDate.ascx" />

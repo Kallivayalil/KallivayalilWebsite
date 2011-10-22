@@ -6,7 +6,7 @@ namespace Website.Models
 {
     public class Entity
     {
-        [ScaffoldColumn(false)]
+       
         public virtual int Id { get; set; }
 
         [DisplayName("CreatedDateTime")]

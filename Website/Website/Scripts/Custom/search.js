@@ -3,7 +3,7 @@ var list = {};
 var queryList = {};
 
 $(document).ready(function () {
-    t = new $.TextboxList('#t2', {  });
+    t = new $.TextboxList('#t2', {});
 });
 
 function add() {
@@ -11,7 +11,7 @@ function add() {
     var e = document.getElementById("search");
     var strUser = e.options[e.selectedIndex].value;
     getQueryKeys();
-    var isPresent = include(queryList,strUser);
+    var isPresent = include(queryList, strUser);
     if (isPresent == false)
         t.add(strUser + '=' + value);
 };
@@ -19,12 +19,11 @@ function add() {
 function include(arr, newValue) {
     var isPresent = false;
     $.each(arr, function (index, existing) {
-        if (existing == newValue) 
-        {
+        if (existing == newValue) {
             isPresent = true;
         }
     })
- 
+
     return isPresent;
 };
 
@@ -65,12 +64,10 @@ function getQueryKeys() {
     }
 };
 
-function onDataBinding(e) 
-{
+function onDataBinding(e) {
     var grid = $(this).data('tGrid');
     getSearchValues();
-  
-    // call the twitter search api
+
     $.ajax({
         url: 'http://localhost/Kallivayalil/Search/Search',
         type: 'POST',
@@ -82,12 +79,11 @@ function onDataBinding(e)
         accept: "application/json",
         success: function (result) {
             grid.dataBind(result);
-  
+
         }
     });
 };
 
 function search() {
-  
     $('#ConstituentsGrid').data('tGrid').ajaxRequest();
 }
