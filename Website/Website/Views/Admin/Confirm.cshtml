@@ -1,58 +1,102 @@
 ﻿@{
     if (Session["matchedConstituentId"] != null && Session["approvalConstituentId"] != null)
     {
-    <table border="0" width="600px">
+    <table border="1" width="600px">
         <tr>
-            <td width="300px">
-                <div> 
-                    <ul>
-                        <li>
-                             <label style="font-weight:bold">Name:</label> @ViewData["ApprovalConstituentName"]
-                         </li>
-                         <li>
-                             <label style="font-weight:bold">Date Of Birth:</label> @ViewData["ApprovalConstituentDOB"]
-                         </li>
-                         <li>
-                             <label style="font-weight:bold">Family Info:</label> @ViewData["ApprovalConstituentFamily"]
-                        </li>
-                        <li>
-                            <div>
-                                <label style="font-weight:bold">Address:</label> @ViewData["ApprovalConstituentAddress"]
-                            </div>
-                        </li>
-                        <li>
-                            <div>
-                                <label style="font-weight:bold">Phone:</label> @ViewData["ApprovalConstituentPhone"]
-                            </div>
-                        </li> 
-                        <li>
-                            <div>
-                                <label style="font-weight:bold">Email:</label> @ViewData["ApprovalConstituentEmail"]
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+        <td width="100px">
+            <label style="font-weight:bold">Name:</label> 
+        </td>
+            <td width="250px">
+                @ViewData["ApprovalConstituentName"]
             </td>
-           <td>
-                <div> 
-                    <ul>
-                        <li>
-                             <label style="font-weight:bold">Name:</label> @ViewData["MatchConstituentName"]
-                             </li>
-                         <li>
-                             <label style="font-weight:bold">Date Of Birth:</label> @ViewData["MatchConstituentDOB"]
-                              </li>
-                         <li>
-                             <label style="font-weight:bold">Family Info:</label> @ViewData["MatchConstituentFamily"]
-                        </li>
-                    </ul>
-                </div>
+           <td width="250px">
+                 @ViewData["MatchConstituentName"]
+            </td>
+        </tr>
+        <tr>
+        <td width="100px">
+            <label style="font-weight:bold">Date Of Birth:</label> 
+        </td>
+            <td width="250px">
+                @ViewData["ApprovalConstituentDOB"]
+            </td>
+           <td width="250px">
+                 @ViewData["MatchConstituentDOB"]
+            </td>
+        </tr> 
+        
+        <tr>
+        <td width="100px">
+            <label style="font-weight:bold">Family Info:</label> 
+        </td>
+            <td width="250px">
+                @ViewData["ApprovalConstituentFamily"]
+            </td>
+           <td width="250px">
+                 @ViewData["MatchConstituentFamily"]
+            </td>
+        </tr>
+        
+        <tr>
+        <td width="100px">
+            <label style="font-weight:bold">Address:</label> 
+        </td>
+            <td width="250px">
+                @ViewData["ApprovalConstituentAddress"]
+            </td>
+           <td width="250px">
+                @{foreach (var item in (List<string>)ViewData["MatchConstituentAddress"])
+                    {
+                      <div>
+                        @Html.Label(item)
+                        @MvcHtmlString.Create("<br/>")
+                        </div>
+                    }
+                    }
+            </td>
+        </tr>
+        
+        <tr>
+        <td width="100px">
+            <label style="font-weight:bold">Phone:</label> 
+        </td>
+            <td width="250px">
+                @ViewData["ApprovalConstituentPhone"]
+            </td>
+           <td width="250px">
+                  @{foreach (var item in (List<string>)ViewData["MatchConstituentPhone"])
+                    {
+                        <div>
+                        @Html.Label(item)
+                        @MvcHtmlString.Create("<br/>")
+                        </div>
+                    }
+                    }
+            </td>
+        </tr>
+        
+         <tr>
+        <td width="100px">
+            <label style="font-weight:bold">Email:</label> 
+        </td>
+            <td width="250px">
+                @ViewData["ApprovalConstituentEmail"]
+            </td>
+           <td width="250px">
+                @{foreach (var item in (List<string>)ViewData["MatchConstituentEmail"])
+                  {
+                      <div>
+                        @Html.Label(item)
+                        @MvcHtmlString.Create("<br/>")
+                      </div>
+                  }
+                    }
             </td>
         </tr>
     </table>
-}
-else
-{ 
+    }
+    else
+    { 
         <div> Please choose a Approval Constituent and a Match Constituent</div>
 }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Dynamic;
 using System.Web.Mvc;
@@ -62,6 +63,17 @@ namespace Website.Controllers
             ViewData["MatchConstituentName"] = matchConstituent.Name.NameString;
             ViewData["MatchConstituentDOB"] = matchConstituent.BornOn.ToString("d");
             ViewData["MatchConstituentFamily"] = string.Format("{0} - {1}", matchConstituent.BranchName.Description, matchConstituent.HouseName);
+            var addresses = GetAddress(matchConstituent.Id);
+            var allAddress = addresses.Select(address => address.ToString()).ToList();
+            ViewData["MatchConstituentAddress"] = allAddress;
+            var phones = GetPhones(matchConstituent.Id);
+            var allPhones = phones.Select(phone => phone.ToString()).ToList();
+            ViewData["MatchConstituentPhone"] = allPhones;
+            var emails = GetEmails(matchConstituent.Id);
+            var allEmails = emails.Select(email => email.ToString()).ToList();
+            ViewData["MatchConstituentEmail"] = allEmails;
+
+
             return PartialView();
         }
 
