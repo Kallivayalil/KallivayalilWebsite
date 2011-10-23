@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -31,6 +32,10 @@ namespace Website.Models
         [DisplayName("Constituent")]
         public virtual Constituent Constituent { get; set; }
 
+        public override string ToString()
+        {
+            return string.Format("{0} , {1} , {2} , {3} - {4}, {5}", Line1, Line2, City, State, PostCode, Country);
+        }
     }
 
     public class Addresses : List<Address> { }

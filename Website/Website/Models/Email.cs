@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -19,6 +20,11 @@ namespace Website.Models
 
         [DisplayName("Constituent")]
         public virtual Constituent Constituent { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} - {1}", Type.Description, Address);
+        }
     }
 
 }

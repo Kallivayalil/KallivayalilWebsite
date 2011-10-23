@@ -1,0 +1,58 @@
+﻿@{
+    if (Session["matchedConstituentId"] != null && Session["approvalConstituentId"] != null)
+    {
+    <table border="0" width="600px">
+        <tr>
+            <td width="300px">
+                <div> 
+                    <ul>
+                        <li>
+                             <label style="font-weight:bold">Name:</label> @ViewData["ApprovalConstituentName"]
+                         </li>
+                         <li>
+                             <label style="font-weight:bold">Date Of Birth:</label> @ViewData["ApprovalConstituentDOB"]
+                         </li>
+                         <li>
+                             <label style="font-weight:bold">Family Info:</label> @ViewData["ApprovalConstituentFamily"]
+                        </li>
+                        <li>
+                            <div>
+                                <label style="font-weight:bold">Address:</label> @ViewData["ApprovalConstituentAddress"]
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <label style="font-weight:bold">Phone:</label> @ViewData["ApprovalConstituentPhone"]
+                            </div>
+                        </li> 
+                        <li>
+                            <div>
+                                <label style="font-weight:bold">Email:</label> @ViewData["ApprovalConstituentEmail"]
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+           <td>
+                <div> 
+                    <ul>
+                        <li>
+                             <label style="font-weight:bold">Name:</label> @ViewData["MatchConstituentName"]
+                             </li>
+                         <li>
+                             <label style="font-weight:bold">Date Of Birth:</label> @ViewData["MatchConstituentDOB"]
+                              </li>
+                         <li>
+                             <label style="font-weight:bold">Family Info:</label> @ViewData["MatchConstituentFamily"]
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </table>
+}
+else
+{ 
+        <div> Please choose a Approval Constituent and a Match Constituent</div>
+}
+}
