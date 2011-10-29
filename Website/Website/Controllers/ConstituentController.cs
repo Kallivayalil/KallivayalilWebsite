@@ -90,7 +90,7 @@ namespace Website.Controllers
             ConstituentData data = HttpHelper.Put(string.Format(serviceBaseUri + "/Constituents/{0}", Session["constituentId"]), constituentData);
             var savedConstituent = new Constituent();
             mapper.Map(data, savedConstituent);
-            return RedirectToAction("Index","Home");
+            return PartialView(GetConstituent());
         }
 
     }
