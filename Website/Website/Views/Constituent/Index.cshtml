@@ -62,12 +62,6 @@
            <input id="photo" name="photo" type="submit" value="Change" />
             <ul>
                 <li>
-                    <label>Birth Date:</label>@Model.BornOn.ToString("d") 
-                </li>
-                <li>
-                    <label>Gender:</label>@Model.Gender 
-                </li>
-                <li>
                     <label>First Name:</label>@Model.Name.FirstName
                 </li>
                 <li>
@@ -75,6 +69,21 @@
                 </li>
                 <li>
                     <label>Last Name:</label>@Model.Name.LastName
+                </li>
+                <li>
+                    <label>Gender:</label>@Model.Gender 
+                </li>
+                <li>
+                    <label>Branch Name:</label>@Model.BranchName.Description 
+                </li>
+                <li>
+                    <label>House Name:</label>@Model.HouseName 
+                </li>
+                 <li>
+                    <label>Birth Date:</label>@Model.BornOn.ToString("d") 
+                </li> 
+                <li>
+                    <label>Marital Status:</label>@Model.MaritialStatusString
                 </li>
                 <li>
                     <input id="viewProfile" type="submit" class="profileButton"  value="Edit" onclick="edit()"/>

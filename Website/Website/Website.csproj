@@ -33,7 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Kallivayalil.Client">
+    <Reference Include="Kallivayalil.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Kallivayalil.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />

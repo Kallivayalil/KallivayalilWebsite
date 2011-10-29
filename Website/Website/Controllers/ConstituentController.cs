@@ -52,6 +52,7 @@ namespace Website.Controllers
             mapper = new AutoDataContractMapper();
             var constituent = new Constituent();
             mapper.Map(constituentData, constituent);
+            constituent.MaritialStatusString = constituent.MaritialStatus == 1 ? "Married" : "Single";
             return constituent;
         }
 
