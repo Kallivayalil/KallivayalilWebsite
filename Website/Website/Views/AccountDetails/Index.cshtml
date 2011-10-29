@@ -1,0 +1,41 @@
+﻿@model Website.Models.Login
+
+
+    <div id="viewAccountDetails" class="employee-details">
+            <ul>
+                <li>
+                    <label>Email:</label>@Model.Email.Address
+                </li>
+                <li>
+                    <label>Is Admin</label>@Model.IsAdmin
+                </li>
+                <li>
+                    <input id="viewProfile" type="submit" class="profileButton"  value="Edit" onclick="edit()"/>
+                </li>
+            </ul>
+
+            
+        </div>         
+
+   
+
+<fieldset   id="editAccountDetails" class="profileDetails hidden">
+        <div style="float: left; clear: left; width: 748px;">
+            <label>First Name:</label>@Model.Email.Address
+            Enter new Password : <input   class="editField" type="text" name="input" id="Password" value=""/>
+            Confirm new Password : <input   class="editField" type="text" name="input" id="ConfirmPassword" value=""/>
+            Is Admin : <input class="editField" type="text" name="input" id="IsAdmin" value="@Model.IsAdmin"/>
+        </div> 
+
+        <div class="hidden">
+            <input class="editField" type="text" name="input"  id="Id" value="@Model.Id"/>
+            <input class="editField" type="text" name="input"  id="CreatedDateTime" value="@Model.CreatedDateTime"/>
+            <input class="editField" type="text" name="input"  id="CreatedBy" value="@Model.CreatedBy"/>
+        </div>
+
+
+         <input id="userUpdate" type="submit" class="profileButton"  value="Save"/>
+      
+</fieldset>
+     
+

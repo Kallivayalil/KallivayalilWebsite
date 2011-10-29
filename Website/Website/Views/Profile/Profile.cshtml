@@ -30,13 +30,13 @@
 <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/Type.js")"> </script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/constituent.js")"></script>
 <script type="text/javascript" src="@Url.Content("~/Scripts/Custom/profile.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/Custom/account.js")"></script>
 <div>
  <div class = "profileTab">
   <ul  id="accordion">	
    <li>
             <h4 class="employee-details"><a href="#" ><span>Constituent</span></a></h4>
-   
-   <div class ="employee-details">
+             <div class ="employee-details">
         @{ Html.RenderAction("Index","Constituent"); } 
     </div>
    
@@ -64,10 +64,10 @@
          @{ Html.RenderAction("Index","Phone"); }
     </div> 
     
+
 </div>
     </li>
     
-   
      <li>
             <h4><a href="#" onclick="click('educationDetail')"><span>Education</span></a></h4>
              <div id="vtab"  class= "profileTab">
@@ -100,6 +100,16 @@
     </div>
     
 </div>  
+    </li>
+
+   
+<li>
+            <h4 class="employee-details"><a href="#" ><span>Account Details</span></a></h4>
+   
+   <div class ="employee-details">
+        @{ Html.RenderAction("Index", "AccountDetails"); } 
+    </div>
+   
     </li>
 </ul>
 </div>
