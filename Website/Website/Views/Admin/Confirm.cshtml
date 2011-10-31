@@ -1,5 +1,5 @@
 ﻿@{
-    if (Session["matchedConstituentId"] != null && Session["approvalConstituentId"] != null)
+    if (Convert.ToInt32(Session["matchedConstituentId"])>0 && Convert.ToInt32(Session["approvalConstituentId"]) >0)
     {
     <table border="1" width="600px">
         <tr>
@@ -94,9 +94,17 @@
             </td>
         </tr>
     </table>
+    
+     <input type="submit" name="submit" value="Register as New" onclick="RegisterNew()"/>
+     <input type="submit" name="submit" value="Register and Link" onclick="RegisterAndLink()"/>
+    
+    }
+    else if (Convert.ToInt32(Session["approvalConstituentId"]) > 0)
+    {
+        <input type="submit" name="submit" value="Register as New" onclick="RegisterNew()"/>
     }
     else
     { 
         <div> Please choose a Approval Constituent and a Match Constituent</div>
-}
+    }
 }

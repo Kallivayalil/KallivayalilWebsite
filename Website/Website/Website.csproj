@@ -121,6 +121,7 @@
     <Compile Include="Models\ReferenceData\OccupationType.cs" />
     <Compile Include="Models\ReferenceData\PositionTypes.cs" />
     <Compile Include="Models\ShortAddress.cs" />
+    <Compile Include="Models\AdminInput.cs" />
     <Compile Include="Models\ViewModels\ConstituentInputModel.cs" />
     <Compile Include="Models\UploadModel.cs" />
     <Compile Include="Models\ViewModels\SearchModel.cs" />

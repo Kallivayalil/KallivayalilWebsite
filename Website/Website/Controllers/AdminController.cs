@@ -26,18 +26,47 @@ namespace Website.Controllers
                 FormsAuthentication.RedirectToLoginPage();
             }
             ViewData["Constituents"] = GetRegistrations();
+            Session["approvalConstituentId"] = 0;
+            Session["matchedConstituentId"] = 0;
             return View();
         }
 
         [HttpPost]
         public JsonResult Matches(string id)
         {
-            Session["approvalConstituentId"] = id; 
+            Session["approvalConstituentId"] = id;
+            Session["matchedConstituentId"] = 0;
             var constituents = PopulateSearchResults(id);
             return this.Json(constituents);
          }  
-
+        
         [HttpPost]
+        public ActionResult RegisterNew(AdminInput input)
+        {
+            var approvalConstituentId = Convert.ToInt32(Session["approvalConstituentId"]);
+            var registerationData = new ConfirmRegisterationData {ConstituentToRegister = approvalConstituentId, IsAdmin = input.IsAdmin};
+
+            HttpHelper.Post(serviceBaseUri + "/Registration/RegisterConstituent",registerationData);
+
+            return RedirectToAction("Registrations");
+        }
+
+        public ActionResult RegisterAndLink(AdminInput input)
+        {
+            var approvalConstituentId = Convert.ToInt32(Session["approvalConstituentId"]);
+            var matchConstituentId = Convert.ToInt32(Session["matchedConstituentId"]);
+            var registerationData = new ConfirmRegisterationData {ConstituentToRegister = approvalConstituentId, Constituent = matchConstituentId,IsAdmin = input.IsAdmin};
+
+            HttpHelper.Post(serviceBaseUri + "/Registration/RegisterConstituent",registerationData);
+
+            return RedirectToAction("Registrations");
+        }  
+        
+        public ActionResult Cancel()
+        {
+            return RedirectToAction("Registrations");
+        }  
+
         public JsonResult SelectMatch(string id)
         {
             Session["matchedConstituentId"] = id;
@@ -51,28 +80,31 @@ namespace Website.Controllers
             var approvalConstituentId = Session["approvalConstituentId"];
             var matchConstituentId = Session["matchedConstituentId"];
 
-            var approvalConstituent = GetConstituent((string)approvalConstituentId);
-            var matchConstituent = GetConstituent((string)matchConstituentId);
-            ViewData["ApprovalConstituentName"] = approvalConstituent.Name.NameString;
-            ViewData["ApprovalConstituentDOB"] = approvalConstituent.BornOn.ToString("d");
-            ViewData["ApprovalConstituentFamily"] = string.Format("{0} - {1}", approvalConstituent.BranchName.Description, approvalConstituent.HouseName);
-            ViewData["ApprovalConstituentAddress"] = GetAddress(approvalConstituent.Id).First().ToString();
-            ViewData["ApprovalConstituentPhone"] = GetPhones(approvalConstituent.Id).First().ToString();
-            ViewData["ApprovalConstituentEmail"] = GetEmails(approvalConstituent.Id).First().ToString();
+            if (Convert.ToInt32(approvalConstituentId) > 0 && Convert.ToInt32(matchConstituentId) > 0)
+            {
 
-            ViewData["MatchConstituentName"] = matchConstituent.Name.NameString;
-            ViewData["MatchConstituentDOB"] = matchConstituent.BornOn.ToString("d");
-            ViewData["MatchConstituentFamily"] = string.Format("{0} - {1}", matchConstituent.BranchName.Description, matchConstituent.HouseName);
-            var addresses = GetAddress(matchConstituent.Id);
-            var allAddress = addresses.Select(address => address.ToString()).ToList();
-            ViewData["MatchConstituentAddress"] = allAddress;
-            var phones = GetPhones(matchConstituent.Id);
-            var allPhones = phones.Select(phone => phone.ToString()).ToList();
-            ViewData["MatchConstituentPhone"] = allPhones;
-            var emails = GetEmails(matchConstituent.Id);
-            var allEmails = emails.Select(email => email.ToString()).ToList();
-            ViewData["MatchConstituentEmail"] = allEmails;
+                var approvalConstituent = GetConstituent((string) approvalConstituentId);
+                var matchConstituent = GetConstituent((string) matchConstituentId);
+                ViewData["ApprovalConstituentName"] = approvalConstituent.Name.NameString;
+                ViewData["ApprovalConstituentDOB"] = approvalConstituent.BornOn.ToString("d");
+                ViewData["ApprovalConstituentFamily"] = string.Format("{0} - {1}", approvalConstituent.BranchName.Description, approvalConstituent.HouseName);
+                ViewData["ApprovalConstituentAddress"] = GetAddress(approvalConstituent.Id).First().ToString();
+                ViewData["ApprovalConstituentPhone"] = GetPhones(approvalConstituent.Id).First().ToString();
+                ViewData["ApprovalConstituentEmail"] = GetEmails(approvalConstituent.Id).First().ToString();
 
+                ViewData["MatchConstituentName"] = matchConstituent.Name.NameString;
+                ViewData["MatchConstituentDOB"] = matchConstituent.BornOn.ToString("d");
+                ViewData["MatchConstituentFamily"] = string.Format("{0} - {1}", matchConstituent.BranchName.Description, matchConstituent.HouseName);
+                var addresses = GetAddress(matchConstituent.Id);
+                var allAddress = addresses.Select(address => address.ToString()).ToList();
+                ViewData["MatchConstituentAddress"] = allAddress;
+                var phones = GetPhones(matchConstituent.Id);
+                var allPhones = phones.Select(phone => phone.ToString()).ToList();
+                ViewData["MatchConstituentPhone"] = allPhones;
+                var emails = GetEmails(matchConstituent.Id);
+                var allEmails = emails.Select(email => email.ToString()).ToList();
+                ViewData["MatchConstituentEmail"] = allEmails;
+            }
 
             return PartialView();
         }

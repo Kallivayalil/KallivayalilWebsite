@@ -41,3 +41,33 @@
     {
         e.data = $.extend(e.data, { id: id });
     }
+
+    function RegisterNew()
+     {
+        $.ajax({
+            url: 'http://localhost/Kallivayalil/Admin/RegisterNew',
+            type: 'POST',
+            dataType: 'json',
+            accept: "application/json",
+            data: {isAdmin:true},
+            success: function (result) {
+            }
+        });
+
+    }
+
+    function RegisterAndLink()
+     {
+        $.ajax({
+            url: 'http://localhost/Kallivayalil/Admin/RegisterAndLink',
+            type: 'POST',
+            dataType: 'json',
+            accept: "application/json",
+            data: { isAdmin: true },
+            success: function (result) {
+            }
+        });
+       
+    }
+
+   
