@@ -109,6 +109,7 @@
     <Compile Include="Helpers\ImageController.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\ThumbnailResult.cs" />
+    <Compile Include="Models\AdminReject.cs" />
     <Compile Include="Models\Association.cs" />
     <Compile Include="Models\Committee.cs" />
     <Compile Include="Models\ContactUs.cs" />

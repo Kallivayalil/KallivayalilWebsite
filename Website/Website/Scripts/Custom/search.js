@@ -87,3 +87,17 @@ function onDataBinding(e) {
 function search() {
     $('#ConstituentsGrid').data('tGrid').ajaxRequest();
 }
+
+
+function onRowDataBound(e) {
+    var row = e.row;
+    var dataItem = e.dataItem;
+
+    // update `Author` cell with template
+    row.cells[7].innerHTML = [
+            '<a class="t-link" href="http://localhost/Kallivayalil/Profile/Profile/', dataItem.Id, '">',
+            dataItem.Name.NameString,
+            '</a>'
+        ].join('');
+
+}

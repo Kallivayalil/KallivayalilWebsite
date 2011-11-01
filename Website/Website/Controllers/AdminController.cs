@@ -69,10 +69,10 @@ namespace Website.Controllers
             return RedirectToAction("Registrations");
         } 
         
-        public ActionResult Reject()
+        public ActionResult Reject(AdminReject input)
         {
             var approvalConstituentId = Convert.ToInt32(Session["approvalConstituentId"]);
-            var registerationData = new ConfirmRegisterationData { ConstituentToRegister = approvalConstituentId, IsApproved = false, AdminEmail = Session["email"].ToString(),RejectReason = "Some random reason"};
+            var registerationData = new ConfirmRegisterationData { ConstituentToRegister = approvalConstituentId, IsApproved = false, AdminEmail = Session["email"].ToString(),RejectReason = input.Reason};
 
             HttpHelper.Post(serviceBaseUri + "/Registration/RegisterConstituent", registerationData);
 

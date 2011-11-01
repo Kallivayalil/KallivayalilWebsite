@@ -78,18 +78,23 @@
 
     }
     
-    function Reject()
-     {
-        $.ajax({
-            url: 'http://localhost/Kallivayalil/Admin/Reject',
-            type: 'POST',
-            dataType: 'json',
-            accept: "application/json",
-            success: function (result) {
-                alert('User registration is rejected.');
-                window.location.href = "Registrations";
-            }
-        });
+    function Reject() {
+        var the_reason = window.prompt("What is the reason name?", "");
+
+        if (the_reason != null && $.trim(the_reason).length > 0) {
+
+            $.ajax({
+                url: 'http://localhost/Kallivayalil/Admin/Reject',
+                type: 'POST',
+                dataType: 'json',
+                accept: "application/json",
+                data: { Reason: the_reason},
+                success: function (result) {
+                    alert('User registration is rejected.');
+                    window.location.href = "Registrations";
+                }
+            });
+        }
        
     }
 

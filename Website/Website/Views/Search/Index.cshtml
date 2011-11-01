@@ -66,9 +66,12 @@
             c.Bound(p => p.HouseName);
             c.Bound(p => p.MaritialStatus);
             c.Bound(p => p.BranchName).ClientTemplate("<#= BranchName.Description#>");
+            c.Template(o => { }).Title("View Profile").Width(80);
+
         })
         .ClientEvents(events => events
                 .OnDataBinding("onDataBinding")
+                .OnRowDataBound("onRowDataBound")
         )
         .DetailView(details => details.ClientTemplate(
                 Html.Telerik().TabStrip()
