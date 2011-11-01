@@ -68,6 +68,16 @@ namespace Website.Controllers
 
             return View("Index");
         }
+        
+        [HttpPost]
+        public ActionResult ForgotPassword(FormCollection collection)
+        {
+            var email = collection["email"];
+
+            var response = HttpHelper.DoHttpGet(string.Format(serviceBaseUri + "/Login/ForgotPassword?email={0}",email));
+
+            return View("Index");
+        }
 
         [HttpPost]
         public ActionResult Logout()

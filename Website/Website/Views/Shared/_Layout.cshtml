@@ -50,6 +50,12 @@
                 .click(function(e) {
                     e.preventDefault();
                     $('#Window').data('tWindow').center().open();
+                });  
+                
+                $('#forgotPassword')
+                .click(function(e) {
+                    e.preventDefault();
+                    $('#ForgotPassword').data('tWindow').center().open();
                 }); 
                 
                 $('#register')
@@ -119,6 +125,27 @@
          }
             </text>)
         .Width(400)
+        .Draggable(true)
+        .Modal(true)
+        .Visible(false)
+        .Render();
+}
+
+@{  Html.Telerik().Window()
+        .Name("ForgotPassword")
+        .Title("Lost your Password?")
+        .Content(@<text>
+         @using (Html.BeginForm("ForgotPassword", "Home", FormMethod.Post))
+         {
+                <div id="feedback-form">
+                <label  for="email">Enter the E-mail given as user name:</label>
+                @Html.TextBox("email") 
+                <div class="form-actions">
+                    <button type="submit"  class="t-button t-state-default">Submit</button>
+                </div>
+                </div>
+         }
+            </text>)
         .Draggable(true)
         .Modal(true)
         .Visible(false)
@@ -342,7 +369,7 @@
 	            	<label><input name="rememberme" id="rememberme" type="checkbox" checked="checked" value="forever" /> &nbsp;Remember me</label>
         			<div class="clear"></div>
 					<input type="submit" name="submit" value="Login" class="bt_login" onclick="login()"/>
-					<a class="lost-pwd" href="#">Lost your password?</a>
+					<a class="lost-pwd" href="#" id="forgotPassword">Lost your password?</a>
                     </fieldset>
                }
 			</div>
