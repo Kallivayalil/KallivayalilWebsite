@@ -52,6 +52,7 @@ namespace Website.Controllers
             mapper = new AutoDataContractMapper();
             var constituent = new Constituent();
             mapper.Map(constituentData, constituent);
+            constituent.MaritialStatusString = constituent.MaritialStatus == 1 ? "Married" : "Single";
             return constituent;
         }
 
@@ -90,7 +91,7 @@ namespace Website.Controllers
             ConstituentData data = HttpHelper.Put(string.Format(serviceBaseUri + "/Constituents/{0}", Session["constituentId"]), constituentData);
             var savedConstituent = new Constituent();
             mapper.Map(data, savedConstituent);
-            return RedirectToAction("Index","Home");
+            return PartialView(GetConstituent());
         }
 
     }

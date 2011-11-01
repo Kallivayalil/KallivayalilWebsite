@@ -57,16 +57,10 @@
         .Render();
 }
 
-    <div class="employee-details">
+    <div id="viewProfileDetails" class="employee-details">
            <img src="@Url.Action("ResizeImage", "Constituent", new { width = 100, height = 100, file = Session["ConstituentId"]+".jpg" })"alt="New"  />
            <input id="photo" name="photo" type="submit" value="Change" />
             <ul>
-                <li>
-                    <label>Birth Date:</label>@Model.BornOn.ToString("d") 
-                </li>
-                <li>
-                    <label>Gender:</label>@Model.Gender 
-                </li>
                 <li>
                     <label>First Name:</label>@Model.Name.FirstName
                 </li>
@@ -76,12 +70,32 @@
                 <li>
                     <label>Last Name:</label>@Model.Name.LastName
                 </li>
+                <li>
+                    <label>Gender:</label>@Model.Gender 
+                </li>
+                <li>
+                    <label>Branch Name:</label>@Model.BranchName.Description 
+                </li>
+                <li>
+                    <label>House Name:</label>@Model.HouseName 
+                </li>
+                 <li>
+                    <label>Birth Date:</label>@Model.BornOn.ToString("d") 
+                </li> 
+                <li>
+                    <label>Marital Status:</label>@Model.MaritialStatusString
+                </li>
+                <li>
+                    <input id="viewProfile" type="submit" class="profileButton"  value="Edit" onclick="edit()"/>
+                </li>
             </ul>
+
+            
         </div>         
 
    
 
-<!--fieldset   id="editProfileDetails" class="profileDetails hidden">
+<fieldset   id="editProfileDetails" class="profileDetails hidden">
         <div style="float: left; clear: left; width: 748px;">
             First Name : <input class="editField" type="text" name="input" id="FirstName" value="@Model.Name.FirstName"/>
             Gender : <input   class="editField" type="text" name="input" id="Gender" value="@Model.Gender"/>
@@ -122,6 +136,6 @@
 
          <input id="personUpdate" type="submit" class="profileButton"  value="Save"/>
       
-</fieldset-->
+</fieldset>
      
 

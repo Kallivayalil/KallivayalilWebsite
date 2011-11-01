@@ -21,6 +21,7 @@ namespace Website.Models
         public virtual DateTime? DiedOn { get; set; }
         public virtual bool HasExpired { get; set; }
         public virtual int MaritialStatus { get; set; }
+        public virtual string MaritialStatusString { get; set; }
         public virtual char IsRegistered { get; set; }
         public virtual ConstituentName Name { get; set; }
 

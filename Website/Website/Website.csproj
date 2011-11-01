@@ -33,7 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Kallivayalil.Client">
+    <Reference Include="Kallivayalil.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Kallivayalil.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +70,7 @@
     <Content Include="Content\images\Constituents\noPicThumb.gif" />
     <Content Include="Content\profile\Jcrop.gif" />
     <Content Include="Content\profile\jquery.Jcrop.css" />
+    <Content Include="Scripts\Custom\account.js" />
     <Content Include="Scripts\Custom\admin.js" />
     <Content Include="Scripts\Custom\jquery_form.js" />
     <Content Include="Scripts\Custom\MicrosoftAjax.debug.js" />
@@ -86,6 +88,7 @@
     <Content Include="Content\images\Constituents\geekinside.jpg" />
     <Content Include="Content\mytheme\images\h4_profile.png" />
     <Content Include="Content\registration\css\overlay.css" />
+    <Compile Include="Controllers\AccountDetailsController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CommitteeController.cs" />
@@ -111,6 +114,7 @@
     <Compile Include="Models\ContactUs.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EducationDetail.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\ProfilePictureModel.cs" />
     <Compile Include="Models\Occupation.cs" />
     <Compile Include="Models\ReferenceData\AddressType.cs" />
@@ -124,6 +128,7 @@
     <Compile Include="Models\AdminInput.cs" />
     <Compile Include="Models\ViewModels\ConstituentInputModel.cs" />
     <Compile Include="Models\UploadModel.cs" />
+    <Compile Include="Models\ViewModels\LoginInputModel.cs" />
     <Compile Include="Models\ViewModels\SearchModel.cs" />
     <Compile Include="Models\ViewModels\User.cs" />
     <Compile Include="Global.asax.cs">
@@ -531,6 +536,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Relationship\EditorTemplates\Editor.cshtml" />
     <Content Include="Views\Upload\Index.cshtml" />
+    <Content Include="Views\AccountDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
