@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -20,6 +21,11 @@ namespace Website.Models
 
         [DisplayName("Constituent")]
         public virtual Constituent Constituent { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} - {1}", Type.Description, Number);
+        }
     }
 
     public class Phones : List<Phone> {}

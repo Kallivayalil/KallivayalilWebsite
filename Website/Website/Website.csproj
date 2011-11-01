@@ -517,6 +517,7 @@
     <Content Include="Views\Committee\EditorTemplates\PositionTypes.ascx" />
     <Content Include="Views\Committee\EditorTemplates\Editor.cshtml" />
     <Content Include="Views\Admin\Registrations.cshtml" />
+    <Content Include="Views\Admin\Confirm.cshtml" />
     <None Include="Views\Committee\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Event\EditorTemplates\EndDate.ascx" />
     <Content Include="Views\Event\EditorTemplates\StartDate.ascx" />

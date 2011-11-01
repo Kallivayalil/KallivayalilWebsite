@@ -1,11 +1,15 @@
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Dynamic;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI.WebControls;
 using Kallivayalil.Client;
 using Telerik.Web.Mvc;
 using Website.Helpers;
 using Website.Models;
+using System.Linq;
 
 namespace Website.Controllers
 {
@@ -32,15 +36,54 @@ namespace Website.Controllers
             var constituents = PopulateSearchResults(id);
             return this.Json(constituents);
          }  
-        
+
         [HttpPost]
         public JsonResult SelectMatch(string id)
         {
-            Session["matchedConstituent"] = id;
+            Session["matchedConstituentId"] = id;
 
             var expandoObject = new ExpandoObject();
             return this.Json(expandoObject);
-         }
+         } 
+        
+        public ActionResult Confirm()
+        {
+            var approvalConstituentId = Session["approvalConstituentId"];
+            var matchConstituentId = Session["matchedConstituentId"];
+
+            var approvalConstituent = GetConstituent((string)approvalConstituentId);
+            var matchConstituent = GetConstituent((string)matchConstituentId);
+            ViewData["ApprovalConstituentName"] = approvalConstituent.Name.NameString;
+            ViewData["ApprovalConstituentDOB"] = approvalConstituent.BornOn.ToString("d");
+            ViewData["ApprovalConstituentFamily"] = string.Format("{0} - {1}", approvalConstituent.BranchName.Description, approvalConstituent.HouseName);
+            ViewData["ApprovalConstituentAddress"] = GetAddress(approvalConstituent.Id).First().ToString();
+            ViewData["ApprovalConstituentPhone"] = GetPhones(approvalConstituent.Id).First().ToString();
+            ViewData["ApprovalConstituentEmail"] = GetEmails(approvalConstituent.Id).First().ToString();
+
+            ViewData["MatchConstituentName"] = matchConstituent.Name.NameString;
+            ViewData["MatchConstituentDOB"] = matchConstituent.BornOn.ToString("d");
+            ViewData["MatchConstituentFamily"] = string.Format("{0} - {1}", matchConstituent.BranchName.Description, matchConstituent.HouseName);
+            var addresses = GetAddress(matchConstituent.Id);
+            var allAddress = addresses.Select(address => address.ToString()).ToList();
+            ViewData["MatchConstituentAddress"] = allAddress;
+            var phones = GetPhones(matchConstituent.Id);
+            var allPhones = phones.Select(phone => phone.ToString()).ToList();
+            ViewData["MatchConstituentPhone"] = allPhones;
+            var emails = GetEmails(matchConstituent.Id);
+            var allEmails = emails.Select(email => email.ToString()).ToList();
+            ViewData["MatchConstituentEmail"] = allEmails;
+
+
+            return PartialView();
+        }
+
+        private Constituent GetConstituent(string id)
+        {
+            var data = HttpHelper.Get<ConstituentData>(serviceBaseUri + "/Constituents/"+id);
+            var constituent = new Constituent();
+            mapper.Map(data, constituent);
+            return constituent;
+        }
 
         private Constituents PopulateSearchResults(string id)
         {
