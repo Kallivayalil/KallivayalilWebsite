@@ -137,12 +137,13 @@
         .Content(@<text>
          @using (Html.BeginForm("ForgotPassword", "Home", FormMethod.Post))
          {
-                <div id="feedback-form">
+                <div id="forgotPassword-form">
                 <label  for="email">Enter the E-mail given as user name:</label>
                 @Html.TextBox("email") 
                 <div class="form-actions">
                     <button type="submit"  class="t-button t-state-default">Submit</button>
                 </div>
+                <label>An email will be sent to your address with the details.Thank You!!</label>
                 </div>
          }
             </text>)

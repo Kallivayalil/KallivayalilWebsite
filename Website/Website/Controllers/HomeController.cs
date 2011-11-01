@@ -74,7 +74,7 @@ namespace Website.Controllers
         {
             var email = collection["email"];
 
-            var response = HttpHelper.DoHttpGet(string.Format(serviceBaseUri + "/Login/ForgotPassword?email={0}",email));
+            var response = HttpHelper.DoHttpGet(string.Format(serviceBaseUri + "/Login/ForgotPassword?email={0}", email));
 
             return View("Index");
         }
