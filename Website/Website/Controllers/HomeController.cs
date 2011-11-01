@@ -80,16 +80,15 @@ namespace Website.Controllers
         }
 
         [HttpPost]
-        public ActionResult Logout()
+        public JsonResult Logout()
         {
             Session["userName"] = null;
             Session["password"] = null;
             Session["loggedInConstituentId"] = null;
 
             FormsAuthentication.SignOut();
-            FormsAuthentication.RedirectToLoginPage();
 
-            return View("Index");
+            return this.Json(null);
         }
     }
 }

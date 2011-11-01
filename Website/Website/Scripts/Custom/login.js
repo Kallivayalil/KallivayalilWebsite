@@ -5,7 +5,11 @@ function logout() {
         type: "POST",
         datatype: "json",
         accept: "application/json",
-        contenttype: "application/json ; charse=UTF-8"
+        contenttype: "application/json ; charse=UTF-8",
+         success: function (result) 
+         {
+             window.location.href = "";
+         }
     });
 
 }
