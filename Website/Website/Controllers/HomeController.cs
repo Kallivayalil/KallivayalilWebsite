@@ -56,6 +56,7 @@ namespace Website.Controllers
 
             var authenticated = HttpHelper.Get<bool>(string.Format(serviceBaseUri+"/Authenticate?username={0}&password={1}",userName,password));
 
+
             if (authenticated)
             {
                 var constituentData = HttpHelper.Get<ConstituentData>(string.Format(serviceBaseUri+"/Find?emailId={0}", userName));
@@ -63,6 +64,8 @@ namespace Website.Controllers
                 Session["email"] = userName;
                 Session["password"] = password;
                 Session["loggedInConstituentId"] = constituentData.Id;
+                var loginData = HttpHelper.Get<LoginData>(string.Format(serviceBaseUri + "/Login?username={0}", userName));
+                Session["IsAdmin"] = loginData.IsAdmin;
                 FormsAuthentication.RedirectFromLoginPage(userName,false);
             }
 
