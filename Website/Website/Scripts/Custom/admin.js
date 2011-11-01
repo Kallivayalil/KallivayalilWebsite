@@ -4,7 +4,7 @@
         id = e.row.cells[0].innerHTML;
 
         $.ajax({
-            url: 'http://localhost/Kallivayalil/Admin/Matches?id='+id,
+            url: 'http://localhost/Kallivayalil/Admin/Matches?constId=' + id,
             type: 'POST',
             dataType: 'json',
             error: function (xhr, status) {
@@ -15,7 +15,11 @@
                 grid.dataBind(result);
                 var a = $('a[href$="#PanelBar-2"]');
                 if (a.parent().hasClass('t-state-default'))
-                    a.click()
+                    a.click();
+
+                /*var b = $('a[href$="/Kallivayalil/Admin/Confirm"]');
+                if (b.parent().hasClass('t-state-default'))
+                    b.click();*/
             }
         });
 
@@ -24,7 +28,7 @@
     function onMatchRowSelect(e) {
         id = e.row.cells[1].innerHTML;
         $.ajax({
-            url: 'http://localhost/Kallivayalil/Admin/SelectMatch?id='+id,
+            url: 'http://localhost/Kallivayalil/Admin/SelectMatch?constId=' + id,
             type: 'POST',
             dataType: 'json',
             error: function (xhr, status) {
@@ -49,8 +53,10 @@
             type: 'POST',
             dataType: 'json',
             accept: "application/json",
-            data: {isAdmin:true},
+            data: {isAdmin: $('#makeAdmin').is(':checked') },
             success: function (result) {
+                alert('User Registration has been approved.');
+                window.location.href = "Registrations";
             }
         });
 
@@ -63,8 +69,10 @@
             type: 'POST',
             dataType: 'json',
             accept: "application/json",
-            data: { isAdmin: true },
+            data: { isAdmin: $('#makeAdmin').is(':checked') },
             success: function (result) {
+                alert('User Registration has been approved and linked with the existing user.');
+                window.location.href = "Registrations";
             }
         });
        

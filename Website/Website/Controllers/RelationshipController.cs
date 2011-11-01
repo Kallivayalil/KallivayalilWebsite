@@ -38,7 +38,7 @@ namespace Website.Controllers
         [GridAction]
         public ActionResult AllAssociations()
         {
-            return PartialView(new GridModel(GetAssociations((int)Session["constituentId"])));
+            return PartialView(new GridModel(GetAssociations((int)Session["loggedInConstituentId"])));
         }
 
         [HttpPost]
@@ -83,7 +83,7 @@ namespace Website.Controllers
         {
             var association = new Association();
             TryUpdateModel(association);
-            var constituentId = (int)Session["constituentId"];
+            var constituentId = (int)Session["loggedInConstituentId"];
             if (association.AssociatedConstituentId <= 0)
                 association.AssociatedConstituent = null;
             association.AssociatedConstituent = new Constituent() { Id = constiuent }; 
@@ -96,7 +96,7 @@ namespace Website.Controllers
 
             HttpHelper.Post(serviceBaseUri+"/Associations?ConstituentId="+constituentId, associationData);
 
-            return PartialView(new GridModel(GetAssociations((int)Session["constituentId"])));
+            return PartialView(new GridModel(GetAssociations((int)Session["loggedInConstituentId"])));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -105,7 +105,7 @@ namespace Website.Controllers
         {
             var association = new Association();
 
-            var constituentId = (int)Session["constituentId"];
+            var constituentId = (int)Session["loggedInConstituentId"];
             TryUpdateModel(association);
             association.Type = new AssociationType {Id = associationType};
             association.Constituent = new Constituent {Id =constituentId };
@@ -116,7 +116,7 @@ namespace Website.Controllers
             mapper.Map(association, associationData);
 
             HttpHelper.Put(string.Format(serviceBaseUri+"/Associations/{0}", id), associationData);
-            return PartialView(new GridModel(GetAssociations((int)Session["constituentId"])));
+            return PartialView(new GridModel(GetAssociations((int)Session["loggedInConstituentId"])));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -124,7 +124,7 @@ namespace Website.Controllers
         public ActionResult Delete(int id)
         {
             HttpHelper.DoHttpDelete(string.Format(serviceBaseUri+"/Associations/{0}", id));
-            return PartialView(new GridModel(GetAssociations((int)Session["constituentId"])));
+            return PartialView(new GridModel(GetAssociations((int)Session["loggedInConstituentId"])));
         }
     }
 }

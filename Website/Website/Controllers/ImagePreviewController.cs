@@ -30,7 +30,7 @@ namespace Website.Controllers
         private void Upload(ProfilePictureModel model)
         {
             var fileName = Path.GetFileName(model.imageLoad2.FileName);
-            var physicalPath = Path.Combine(Server.MapPath("~/App_Data"), Session["ConstituentId"].ToString());
+            var physicalPath = Path.Combine(Server.MapPath("~/App_Data"), Session["constituentId"].ToString());
 
             // The files are not actually saved in this demo
             model.imageLoad2.SaveAs(physicalPath + "_Full.jpg");

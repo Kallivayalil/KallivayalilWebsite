@@ -32,26 +32,27 @@ namespace Website.Controllers
         }
 
         [HttpPost]
-        public JsonResult Matches(string id)
+        public JsonResult Matches(string constId)
         {
-            Session["approvalConstituentId"] = id;
+            Session["approvalConstituentId"] = constId;
             Session["matchedConstituentId"] = 0;
-            var constituents = PopulateSearchResults(id);
+            var constituents = PopulateSearchResults(constId);
             return this.Json(constituents);
          }  
         
         [HttpPost]
-        public ActionResult RegisterNew(AdminInput input)
+        public JsonResult RegisterNew(AdminInput input)
         {
             var approvalConstituentId = Convert.ToInt32(Session["approvalConstituentId"]);
             var registerationData = new ConfirmRegisterationData {ConstituentToRegister = approvalConstituentId, IsAdmin = input.IsAdmin};
 
             HttpHelper.Post(serviceBaseUri + "/Registration/RegisterConstituent",registerationData);
 
-            return RedirectToAction("Registrations");
+            var expandoObject = new ExpandoObject();
+            return this.Json(expandoObject);
         }
 
-        public ActionResult RegisterAndLink(AdminInput input)
+        public JsonResult RegisterAndLink(AdminInput input)
         {
             var approvalConstituentId = Convert.ToInt32(Session["approvalConstituentId"]);
             var matchConstituentId = Convert.ToInt32(Session["matchedConstituentId"]);
@@ -59,17 +60,18 @@ namespace Website.Controllers
 
             HttpHelper.Post(serviceBaseUri + "/Registration/RegisterConstituent",registerationData);
 
-            return RedirectToAction("Registrations");
+            var expandoObject = new ExpandoObject();
+            return this.Json(expandoObject);
         }  
         
         public ActionResult Cancel()
         {
             return RedirectToAction("Registrations");
-        }  
+        }
 
-        public JsonResult SelectMatch(string id)
+        public JsonResult SelectMatch(string constId)
         {
-            Session["matchedConstituentId"] = id;
+            Session["matchedConstituentId"] = constId;
 
             var expandoObject = new ExpandoObject();
             return this.Json(expandoObject);

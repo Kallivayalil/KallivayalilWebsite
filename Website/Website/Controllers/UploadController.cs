@@ -69,7 +69,7 @@ namespace Website.Controllers
         {
             var uploadModel = new UploadModel();
             TryUpdateModel(uploadModel);
-            var constituentId = (int)Session["constituentId"];
+            var constituentId = (int)Session["loggedInConstituentId"];
             uploadModel.Constituent = new Constituent { Id = constituentId };
 
             mapper = new AutoDataContractMapper();

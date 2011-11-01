@@ -95,13 +95,17 @@
         </tr>
     </table>
     
+     <input type="checkbox" id="makeAdmin" name="MakeAdmin" value="MakeAdmin" title="MakeAdmin"/> <label> Make as Admin</label><br/>
      <input type="submit" name="submit" value="Register as New" onclick="RegisterNew()"/>
      <input type="submit" name="submit" value="Register and Link" onclick="RegisterAndLink()"/>
+     <input type="submit" name="submit" value="Reject" onclick="Reject()"/>
     
     }
     else if (Convert.ToInt32(Session["approvalConstituentId"]) > 0)
     {
+        <input type="checkbox" id="makeAdmin" name="MakeAdmin" value="MakeAdmin"  title="MakeAdmin"/> <label> Make as Admin</label> <br/>
         <input type="submit" name="submit" value="Register as New" onclick="RegisterNew()"/>
+        <input type="submit" name="submit" value="Reject" onclick="Reject()"/>
     }
     else
     { 

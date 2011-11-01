@@ -61,7 +61,7 @@ namespace Website.Controllers
                 var constituentData = HttpHelper.Get<ConstituentData>(string.Format(serviceBaseUri+"/Find?emailId={0}", userName));
                 Session["userName"] = constituentData.Name.FirstName;
                 Session["password"] = password;
-                Session["constituentId"] = constituentData.Id;
+                Session["loggedInConstituentId"] = constituentData.Id;
                 FormsAuthentication.RedirectFromLoginPage(userName,false);
             }
 
@@ -73,6 +73,7 @@ namespace Website.Controllers
         {
             Session["userName"] = null;
             Session["password"] = null;
+            Session["loggedInConstituentId"] = null;
 
             FormsAuthentication.SignOut();
             FormsAuthentication.RedirectToLoginPage();

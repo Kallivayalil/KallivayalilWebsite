@@ -63,7 +63,7 @@ namespace Website.Controllers
             var @event = new Event();
             TryUpdateModel(@event);
 
-            var constituentId = (int)Session["constituentId"];
+            var constituentId = (int)Session["loggedInConstituentId"];
 
             @event.Constituent = new Constituent {Id = constituentId};
 
@@ -89,7 +89,7 @@ namespace Website.Controllers
             var @event = new Event();
 
 
-            var constituentId = (int)Session["constituentId"];
+            var constituentId = (int)Session["loggedInConstituentId"];
             TryUpdateModel(@event);
             @event.Constituent = new Constituent { Id = constituentId };
 
