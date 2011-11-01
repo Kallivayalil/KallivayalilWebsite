@@ -1,3 +1,4 @@
+using System;
 using System.Configuration;
 using System.Diagnostics.Eventing.Reader;
 using System.Web.Mvc;
@@ -41,7 +42,7 @@ namespace Website.Controllers
 
         private EducationDetails GetEducations()
         {
-            var constitinetId = (int) Session["constituentId"];
+            var constitinetId =  Convert.ToInt32(Session["constituentId"]);
             var educationDetailsData = HttpHelper.Get<EducationDetailsData>(string.Format(serviceBaseUri+"/EducationDetails?ConstituentId={0}", constitinetId));
 
             mapper = new AutoDataContractMapper();
@@ -57,7 +58,7 @@ namespace Website.Controllers
             var educationDetail = new EducationDetail();
             TryUpdateModel(educationDetail);
 
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
             educationDetail.Constituent = new Constituent { Id = constituentId};
             educationDetail.Type = new EducationType() { Id = educationType };
 
@@ -75,7 +76,7 @@ namespace Website.Controllers
         public ActionResult Edit(int id, int educationType)
         {
             var educationDetail = new EducationDetail();
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
 
             TryUpdateModel(educationDetail);
             educationDetail.Type = new EducationType() { Id = educationType };

@@ -1,3 +1,4 @@
+using System;
 using System.Configuration;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -46,7 +47,7 @@ namespace Website.Controllers
 
         private Constituent GetConstituent()
         {
-            var constituentId = (int)Session["constituentId"];
+            var constituentId = Convert.ToInt32(Session["constituentId"]);
             var constituentData = HttpHelper.Get<ConstituentData>(string.Format(serviceBaseUri+"/Constituents/{0}", constituentId));
 
             mapper = new AutoDataContractMapper();
@@ -82,7 +83,7 @@ namespace Website.Controllers
             constituentToSave.CreatedDateTime = constituent.CreatedDateTime;
             constituentToSave.CreatedBy = constituent.CreatedBy;
             constituentToSave.BornOn = constituent.BornOn;
-            constituentToSave.Id = (int)Session["constituentId"];
+            constituentToSave.Id =  Convert.ToInt32(Session["constituentId"]);
 
             var mapper = new AutoDataContractMapper();
             var constituentData = new ConstituentData();

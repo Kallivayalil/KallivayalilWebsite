@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Web.Mvc;
 using System.Web.Security;
 using Kallivayalil.Client;
@@ -40,7 +41,7 @@ namespace Website.Controllers
 
         private Emails GetEmails()
         {
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
             var emailsData = HttpHelper.Get<EmailsData>(serviceBaseUri+"/Emails?ConstituentId="+constituentId);
 
             mapper = new AutoDataContractMapper();
@@ -56,7 +57,7 @@ namespace Website.Controllers
             var email = new Email();
             TryUpdateModel(email);
 
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
 
             email.Constituent = new Constituent { Id = constituentId };
             email.Type = new EmailType() { Id = emailType };
@@ -75,7 +76,7 @@ namespace Website.Controllers
         public ActionResult Edit(int id, int emailType)
         {
             var email = new Email();
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
             TryUpdateModel(email);
             email.Type = new EmailType() { Id = emailType };
             email.Constituent = new Constituent { Id = constituentId };

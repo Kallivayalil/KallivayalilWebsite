@@ -26,7 +26,7 @@ namespace Website.Controllers
 
         private void PopulateAddressTypes()
         {
-            var constituentId = (int)Session["constituentId"];
+            var constituentId = Convert.ToInt32(Session["constituentId"]);
             var addressesData = HttpHelper.Get<AddressesData>(string.Format(serviceBaseUri+"/Addresses?constituentId={0}", constituentId));
 
             var addresses = new ShortAddresses();
@@ -58,7 +58,7 @@ namespace Website.Controllers
 
         private Phones GetPhones()
         {
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
             var phonesData = HttpHelper.Get<PhonesData>(string.Format(serviceBaseUri+"/Phones?ConstituentId={0}", constituentId));
 
             mapper = new AutoDataContractMapper();
@@ -74,7 +74,7 @@ namespace Website.Controllers
             var phone = new Phone();
             TryUpdateModel(phone);
 
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
             phone.Constituent = new Constituent {Id = constituentId};
             phone.Type = new PhoneType { Id = PhoneType };
             phone.Address = new ShortAddress() { Id = ShortAddress };
@@ -94,7 +94,7 @@ namespace Website.Controllers
         {
             var phone = new Phone();
 
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
 
             TryUpdateModel(phone);
             phone.Type = new PhoneType {Id = PhoneType};

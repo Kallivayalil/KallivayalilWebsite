@@ -1,3 +1,4 @@
+using System;
 using System.Configuration;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -39,7 +40,7 @@ namespace Website.Controllers
 
         private Addresses GetAddress()
         {
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
             var addressesData = HttpHelper.Get<AddressesData>(string.Format(serviceBaseUri+"/Addresses?ConstituentId={0}", constituentId));
 
             mapper = new AutoDataContractMapper();
@@ -54,7 +55,7 @@ namespace Website.Controllers
         {
             var address = new Address();
             TryUpdateModel(address);
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
             address.Constituent = new Constituent {Id = constituentId};
             address.Type = new AddressType { Id = addressType };
 
@@ -72,7 +73,7 @@ namespace Website.Controllers
         public ActionResult Edit(int id, int addressType)
         {
             var address = new Address();
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
 
             TryUpdateModel(address);
             address.Type = new AddressType {Id = addressType};

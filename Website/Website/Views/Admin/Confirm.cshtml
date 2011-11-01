@@ -112,3 +112,25 @@
         <div> Please choose a Approval Constituent and a Match Constituent</div>
     }
 }
+
+@{  Html.Telerik().Window()
+        .Name("ConfirmReject")
+        .Title("Reject Reason")
+        .Content(@<text>
+         @using (Html.BeginForm())
+         {
+                <div id="rejectreasonform-form">
+                <label  for="email">Enter the E-mail given as user name:</label>
+                @Html.TextBox("email") 
+                <div class="form-actions">
+                    <button type="submit"  class="t-button t-state-default">Submit</button>
+                </div>
+                <label>An email will be sent to your address with the details.Thank You!!</label>
+                </div>
+         }
+            </text>)
+        .Draggable(true)
+        .Modal(true)
+        .Visible(false)
+        .Render();
+}

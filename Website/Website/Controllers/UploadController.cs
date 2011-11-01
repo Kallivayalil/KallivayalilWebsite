@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Net;
@@ -69,7 +70,7 @@ namespace Website.Controllers
         {
             var uploadModel = new UploadModel();
             TryUpdateModel(uploadModel);
-            var constituentId = (int)Session["loggedInConstituentId"];
+            var constituentId =  Convert.ToInt32(Session["loggedInConstituentId"]);
             uploadModel.Constituent = new Constituent { Id = constituentId };
 
             mapper = new AutoDataContractMapper();

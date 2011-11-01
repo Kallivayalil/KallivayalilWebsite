@@ -1,3 +1,4 @@
+using System;
 using System.Configuration;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -40,7 +41,7 @@ namespace Website.Controllers
 
         private Occupations GetOccupations()
         {
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
             var OccupationsData = HttpHelper.Get<OccupationsData>(string.Format(serviceBaseUri+"/Occupations?ConstituentId={0}", constituentId));
 
             mapper = new AutoDataContractMapper();
@@ -56,7 +57,7 @@ namespace Website.Controllers
             var Occupation = new Occupation();
             TryUpdateModel(Occupation);
 
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
             Occupation.Constituent = new Constituent {Id = constituentId};
             Occupation.Type = new OccupationType { Id = OccupationType };
 
@@ -76,7 +77,7 @@ namespace Website.Controllers
             var Occupation = new Occupation();
 
             TryUpdateModel(Occupation);
-            var constituentId = (int)Session["constituentId"];
+            var constituentId =  Convert.ToInt32(Session["constituentId"]);
             Occupation.Type = new OccupationType {Id = OccupationType};
             Occupation.Address = new Address() {Id = 1};
             Occupation.Constituent = new Constituent {Id = constituentId};
