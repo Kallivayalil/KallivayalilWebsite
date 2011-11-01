@@ -1,5 +1,21 @@
 ﻿@model Website.Models.Login
 
+<script type="text/javascript">
+
+    function checkPassword() {
+        var password = $('#Password').val();
+        var confirmPassword = $('#ConfirmPassword').val();
+
+        if (password != confirmPassword) {
+            $('#Password').val("");
+            $('#ConfirmPassword').val("");
+            alert("Passwords do not match. Please verify.");
+        }
+
+    }
+
+</script>
+
 
     <div id="viewAccountDetails" class="employee-details">
             <ul>
@@ -22,8 +38,8 @@
 <fieldset   id="editAccountDetails" class="profileDetails hidden">
         <div style="float: left; clear: left; width: 748px;">
             <label>First Name:</label>@Model.Email.Address
-            Enter new Password : <input   class="editField" type="text" name="input" id="Password" value=""/>
-            Confirm new Password : <input   class="editField" type="text" name="input" id="ConfirmPassword" value=""/>
+            Enter new Password : <input   class="editField" type="password" name="input" id="Password" value=""/>
+            Confirm new Password : <input   class="editField" type="password" name="input" id="ConfirmPassword" value="" onblur="checkPassword()"/>
             Is Admin : <input class="editField" type="text" name="input" id="IsAdmin" value="@Model.IsAdmin"/>
         </div> 
 

@@ -65,7 +65,7 @@ namespace Website.Controllers
                 Session["password"] = password;
                 Session["loggedInConstituentId"] = constituentData.Id;
                 var loginData = HttpHelper.Get<LoginData>(string.Format(serviceBaseUri + "/Login?username={0}", userName));
-                Session["IsAdmin"] = loginData.IsAdmin;
+                Session["isAdmin"] = loginData.IsAdmin;
                 FormsAuthentication.RedirectFromLoginPage(userName,false);
             }
 
