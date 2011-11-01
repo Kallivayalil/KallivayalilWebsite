@@ -75,6 +75,21 @@
                 window.location.href = "Registrations";
             }
         });
+
+    }
+    
+    function Reject()
+     {
+        $.ajax({
+            url: 'http://localhost/Kallivayalil/Admin/Reject',
+            type: 'POST',
+            dataType: 'json',
+            accept: "application/json",
+            success: function (result) {
+                alert('User registration is rejected.');
+                window.location.href = "Registrations";
+            }
+        });
        
     }
 

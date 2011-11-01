@@ -44,7 +44,7 @@ namespace Website.Controllers
         public JsonResult RegisterNew(AdminInput input)
         {
             var approvalConstituentId = Convert.ToInt32(Session["approvalConstituentId"]);
-            var registerationData = new ConfirmRegisterationData {ConstituentToRegister = approvalConstituentId, IsAdmin = input.IsAdmin};
+            var registerationData = new ConfirmRegisterationData { ConstituentToRegister = approvalConstituentId, IsAdmin = input.IsAdmin, IsApproved = true, AdminEmail = Session["userName"].ToString() };
 
             HttpHelper.Post(serviceBaseUri + "/Registration/RegisterConstituent",registerationData);
 
@@ -56,7 +56,7 @@ namespace Website.Controllers
         {
             var approvalConstituentId = Convert.ToInt32(Session["approvalConstituentId"]);
             var matchConstituentId = Convert.ToInt32(Session["matchedConstituentId"]);
-            var registerationData = new ConfirmRegisterationData {ConstituentToRegister = approvalConstituentId, Constituent = matchConstituentId,IsAdmin = input.IsAdmin};
+            var registerationData = new ConfirmRegisterationData { ConstituentToRegister = approvalConstituentId, Constituent = matchConstituentId, IsAdmin = input.IsAdmin, IsApproved = true, AdminEmail = Session["userName"].ToString() };
 
             HttpHelper.Post(serviceBaseUri + "/Registration/RegisterConstituent",registerationData);
 
@@ -67,6 +67,17 @@ namespace Website.Controllers
         public ActionResult Cancel()
         {
             return RedirectToAction("Registrations");
+        } 
+        
+        public ActionResult Reject()
+        {
+            var approvalConstituentId = Convert.ToInt32(Session["approvalConstituentId"]);
+            var registerationData = new ConfirmRegisterationData { ConstituentToRegister = approvalConstituentId, IsApproved = false, AdminEmail = Session["userName"].ToString(),RejectReason = "Some random reason"};
+
+            HttpHelper.Post(serviceBaseUri + "/Registration/RegisterConstituent", registerationData);
+
+            var expandoObject = new ExpandoObject();
+            return this.Json(expandoObject);
         }
 
         public JsonResult SelectMatch(string constId)
