@@ -11,8 +11,6 @@ namespace Website.Models
 
     public class Constituent : Entity
     {
-        public virtual int Id { get; set; }
-
         public virtual string Gender { get; set; }
         [UIHint("BranchTypes"), DisplayName("Branch Type")]
         public virtual BranchType BranchName { get; set; }

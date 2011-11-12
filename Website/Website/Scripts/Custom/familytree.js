@@ -108,7 +108,7 @@ function init(constituentId) {
 
                 var constId = node.data.familyMemberId;
                 if (constId > 0) {
-                    $.getJSON('http://localhost/kallivayalilService/KallivayalilService.svc/Relationships?constituentId=' + constId, function (data) {
+                    $.getJSON('./Relationships/' + constId, function (data) {
                         jsonData = data;
                         //load json data
                         st.loadJSON(jsonData);
@@ -219,7 +219,7 @@ function init(constituentId) {
         }
     });
 
-    $.getJSON('http://localhost/kallivayalilService/KallivayalilService.svc/Relationships?constituentId=' + constituentId, function (data) {
+    $.getJSON('./Relationships/' + constituentId, function (data) {
         jsonData = data;
         //load json data
         st.loadJSON(jsonData);
