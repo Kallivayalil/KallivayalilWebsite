@@ -431,18 +431,18 @@
     </div>
     <div id="nav">
     	<ul class="sf-menu dropdown">
-        	<li class="selected"><a href="http://localhost/kallivayalil/">Our Family</a></li>
+        	<li class="selected"><a href="/Home/Index">Our Family</a></li>
 
             @if (!string.IsNullOrEmpty(Session["userName"] as string))
             {
-            <li  class="selected"><a href="http://localhost/kallivayalil/Upload/Index">Upload Details</a></li>
-        	<li class="selected"><a href="http://localhost/kallivayalil/Profile/Profile">Profile</a></li>
-        	<li class="selected"><a href="http://localhost/kallivayalil/Event/Index">Events</a></li>
-        	<li class="selected"><a href="http://localhost/kallivayalil/FamilyTree/Index">FamilyTree</a></li>
-        	<li class="selected"><a href="http://localhost/kallivayalil/Search/Index">Search</a></li>                
-        	<li  class="selected"><a href="http://localhost/kallivayalil/Committee/Index">Committee Details</a></li>
-        	<li  class="selected"><a href="http://localhost/kallivayalil/Admin/Registrations">Registrations</a></li>
-        	<li id="feedback-open-button" class="selected"><a href="http://localhost/kallivayalil/ContactUs/Index">Contact Us</a></li>
+            <li  class="selected"><a href="/Upload/Index">Upload Details</a></li>
+        	<li class="selected"><a href="/Profile/Profile">Profile</a></li>
+        	<li class="selected"><a href="/Event/Index">Events</a></li>
+        	<li class="selected"><a href="/FamilyTree/Index">FamilyTree</a></li>
+        	<li class="selected"><a href="/Search/Index">Search</a></li>                
+        	<li  class="selected"><a href="/Committee/Index">Committee Details</a></li>
+        	<li  class="selected"><a href="/Admin/Registrations">Registrations</a></li>
+        	<li id="feedback-open-button" class="selected"><a href="/ContactUs/Index">Contact Us</a></li>
             }
         </ul>
     </div>
