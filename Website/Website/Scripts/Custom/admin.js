@@ -4,7 +4,7 @@
         id = e.row.cells[0].innerHTML;
 
         $.ajax({
-            url: 'http://localhost/Kallivayalil/Admin/Matches?constId=' + id,
+            url: '/Admin/Matches?constId=' + id,
             type: 'POST',
             dataType: 'json',
             error: function (xhr, status) {
@@ -28,7 +28,7 @@
     function onMatchRowSelect(e) {
         id = e.row.cells[1].innerHTML;
         $.ajax({
-            url: 'http://localhost/Kallivayalil/Admin/SelectMatch?constId=' + id,
+            url: '/Admin/SelectMatch?constId=' + id,
             type: 'POST',
             dataType: 'json',
             error: function (xhr, status) {
@@ -49,7 +49,7 @@
     function RegisterNew()
      {
         $.ajax({
-            url: 'http://localhost/Kallivayalil/Admin/RegisterNew',
+            url: '/Admin/RegisterNew',
             type: 'POST',
             dataType: 'json',
             accept: "application/json",
@@ -65,7 +65,7 @@
     function RegisterAndLink()
      {
         $.ajax({
-            url: 'http://localhost/Kallivayalil/Admin/RegisterAndLink',
+            url: '/Admin/RegisterAndLink',
             type: 'POST',
             dataType: 'json',
             accept: "application/json",
@@ -84,7 +84,7 @@
         if (the_reason != null && $.trim(the_reason).length > 0) {
 
             $.ajax({
-                url: 'http://localhost/Kallivayalil/Admin/Reject',
+                url: '/Admin/Reject',
                 type: 'POST',
                 dataType: 'json',
                 accept: "application/json",

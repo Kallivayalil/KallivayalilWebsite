@@ -108,7 +108,7 @@ function init(constituentId) {
 
                 var constId = node.data.familyMemberId;
                 if (constId > 0) {
-                    $.getJSON('./Relationships/' + constId, function (data) {
+                    $.getJSON('/FamilyTree/Relationships/' + constId, function (data) {
                         jsonData = data;
                         //load json data
                         st.loadJSON(jsonData);
@@ -219,7 +219,7 @@ function init(constituentId) {
         }
     });
 
-    $.getJSON('./Relationships/' + constituentId, function (data) {
+    $.getJSON('/FamilyTree/Relationships/' + constituentId, function (data) {
         jsonData = data;
         //load json data
         st.loadJSON(jsonData);

@@ -69,7 +69,7 @@ function onDataBinding(e) {
     getSearchValues();
 
     $.ajax({
-        url: 'http://localhost/Kallivayalil/Search/Search',
+        url: '/Search/Search',
         type: 'POST',
         dataType: 'json',
         error: function (xhr, status) {
@@ -95,7 +95,7 @@ function onRowDataBound(e) {
 
     // update `Author` cell with template
     row.cells[7].innerHTML = [
-            '<a class="t-link" href="http://localhost/Kallivayalil/Profile/Profile/', dataItem.Id, '">',
+            '<a class="t-link" href="/Profile/Profile/', dataItem.Id, '">',
             dataItem.Name.NameString,
             '</a>'
         ].join('');

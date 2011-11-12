@@ -21,7 +21,7 @@ $(function () {
         var constituent = JSON.stringify(person);
 
         $.ajax({
-            url: "http://localhost/Kallivayalil/AccountDetails/Save",
+            url: "/AccountDetails/Save",
             type: "POST",
             datatype: "json",
             data: constituent,

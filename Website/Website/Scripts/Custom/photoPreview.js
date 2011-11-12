@@ -2,7 +2,7 @@
   function ChangeImage(fileId, imageId,previewId) {
               var myform = document.createElement("form");
         myform.style.display = "none";
-        myform.action = "http://localhost/kallivayalil/ImagePreview/AjaxSubmit";
+        myform.action = "/ImagePreview/AjaxSubmit";
         myform.enctype = "multipart/form-data";
         myform.method = "post";
         var imageLoad;
@@ -24,8 +24,8 @@
         $(myform).ajaxSubmit({ success:
         function (responseText) {
             var d = new Date();
-            $(imageId)[0].src = "http://localhost/kallivayalil/ImagePreview/ImageLoad?a=" + d.getMilliseconds();
-            $(previewId)[0].src = "http://localhost/kallivayalil/ImagePreview/ImageLoad?a=" + d.getMilliseconds();
+            $(imageId)[0].src = "/ImagePreview/ImageLoad?a=" + d.getMilliseconds();
+            $(previewId)[0].src = "/ImagePreview/ImageLoad?a=" + d.getMilliseconds();
 
             $('#preview').css({
                 width: '115px',
@@ -86,7 +86,7 @@
 function UploadSubmit(fileId, imageId) {
               var myform = document.createElement("form");
         myform.style.display = "none";
-        myform.action = "http://localhost/kallivayalil/ImagePreview/UploadSubmit";
+        myform.action = "/ImagePreview/UploadSubmit";
         myform.enctype = "multipart/form-data";
         myform.method = "post";
         myform.dataType = "json";
@@ -109,7 +109,7 @@ function UploadSubmit(fileId, imageId) {
         $(myform).ajaxSubmit({ success:
         function (responseText) {
             var d = new Date();
-            $(imageId)[0].src = "http://localhost/kallivayalil/ImagePreview/ImageLoad?a=" + d.getMilliseconds();
+            $(imageId)[0].src = "/ImagePreview/ImageLoad?a=" + d.getMilliseconds();
             if (document.all || is_chrome)//IE
                 imageLoadParent.appendChild(myform.firstChild);
             else//FF                     

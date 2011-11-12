@@ -1,7 +1,7 @@
 ﻿
 function logout() {
     $.ajax({
-        url: "http://localhost/Kallivayalil/Home/Logout",
+        url: "/Home/Logout",
         type: "POST",
         datatype: "json",
         accept: "application/json",
